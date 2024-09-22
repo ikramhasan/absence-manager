@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// Absence card widget.
 class AbsenceCard extends StatelessWidget {
   /// Absence card constructor.
-  /// 
+  ///
   /// Requires an [Absence] object.
   const AbsenceCard({required this.absence, super.key});
 
@@ -119,7 +119,6 @@ class AbsenceCard extends StatelessWidget {
           ],
         ),
         trailing: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
