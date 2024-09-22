@@ -43,7 +43,7 @@ Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
       'rejectedAt': instance.rejectedAt?.toIso8601String(),
       'admitterId': instance.admitterId,
       'confirmedAt': instance.confirmedAt?.toIso8601String(),
-      'user': instance.user,
+      'user': instance.user?.toJson(),
     };
 
 const _$TypeEnumMap = {

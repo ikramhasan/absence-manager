@@ -14,6 +14,7 @@ void main() {
         crewId: 1,
         startDate: DateTime.parse('2023-01-02T00:00:00.000Z'),
         endDate: DateTime.parse('2023-01-03T00:00:00.000Z'),
+        rejectedAt: DateTime.parse('2023-01-04T00:00:00.000Z'),
         id: 1,
         memberNote: 'Member Note',
         userId: 1,
@@ -46,14 +47,17 @@ void main() {
         crewId: 1,
         startDate: DateTime.parse('2023-01-02T00:00:00.000Z'),
         endDate: DateTime.parse('2023-01-03T00:00:00.000Z'),
+        rejectedAt: DateTime.parse('2023-01-04T00:00:00.000Z'),
         id: 1,
         memberNote: 'Member Note',
         userId: 1,
         type: Type.sickness,
         user: user,
       );
-
+      final json = absence.toJson();
+      expect(json['user'], user.toJson());
       expect(absence.user, user);
+      expect(Absence.fromJson(json).user, user);
     });
 
     test('should create an Absence instance from JSON', () async {
@@ -72,6 +76,10 @@ void main() {
         DateTime.parse(jsonMap['startDate'].toString()),
       );
       expect(absence.endDate, DateTime.parse(jsonMap['endDate'].toString()));
+      expect(
+        absence.rejectedAt,
+        DateTime.parse(jsonMap['rejectedAt'].toString()),
+      );
       expect(absence.id, jsonMap['id']);
       expect(absence.memberNote, jsonMap['memberNote']);
       expect(absence.userId, jsonMap['userId']);
@@ -94,6 +102,8 @@ void main() {
             : null,
       );
     });
+
+    test('fromJson should create an absence with a user', () {});
 
     test('should create an empty Absence instance', () {
       final absence = Absence.empty();

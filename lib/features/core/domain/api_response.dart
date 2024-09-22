@@ -4,7 +4,7 @@ part 'api_response.freezed.dart';
 part 'api_response.g.dart';
 
 @freezed
-@JsonSerializable(genericArgumentFactories: true)
+@JsonSerializable(genericArgumentFactories: true, createToJson: false)
 
 /// A class representing a generic API response.
 class ApiResponse<T> with _$ApiResponse<T> {
