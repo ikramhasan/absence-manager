@@ -10,7 +10,7 @@ part 'absence_cubit.freezed.dart';
 /// A cubit managing the state of the absence feature.
 class AbsenceCubit extends Cubit<AbsenceState> {
   /// Creates an [AbsenceCubit] instance with the given [IAbsenceRepository].
-  AbsenceCubit(this._repository) : super(const AbsenceState.initial());
+  AbsenceCubit(this._repository) : super(const AbsenceState.loading());
 
   final IAbsenceRepository _repository;
 

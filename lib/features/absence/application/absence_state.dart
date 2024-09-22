@@ -4,15 +4,12 @@ part of 'absence_cubit.dart';
 
 /// A class representing the state of the AbsenceCubit.
 class AbsenceState with _$AbsenceState {
-  /// The initial state of the AbsenceCubit.
-  const factory AbsenceState.initial() = _Initial;
-
   /// The loading state of the AbsenceCubit.
-  const factory AbsenceState.loading() = _Loading;
+  const factory AbsenceState.loading() = AbsenceLoading;
 
   /// The loaded state of the AbsenceCubit.
-  const factory AbsenceState.loaded(List<Absence> absences) = _Loaded;
+  const factory AbsenceState.loaded(List<Absence> absences) = AbsenceLoaded;
 
   /// The error state of the AbsenceCubit.
-  const factory AbsenceState.error(Failure failure) = _Error;
+  const factory AbsenceState.error(Failure failure) = AbsenceError;
 }

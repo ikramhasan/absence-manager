@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AbsenceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Absence> absences) loaded,
     required TResult Function(Failure failure) error,
@@ -26,7 +25,6 @@ mixin _$AbsenceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<Absence> absences)? loaded,
     TResult? Function(Failure failure)? error,
@@ -34,7 +32,6 @@ mixin _$AbsenceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Absence> absences)? loaded,
     TResult Function(Failure failure)? error,
@@ -43,26 +40,23 @@ mixin _$AbsenceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
+    required TResult Function(AbsenceLoading value) loading,
+    required TResult Function(AbsenceLoaded value) loaded,
+    required TResult Function(AbsenceError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
+    TResult? Function(AbsenceLoading value)? loading,
+    TResult? Function(AbsenceLoaded value)? loaded,
+    TResult? Function(AbsenceError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
+    TResult Function(AbsenceLoading value)? loading,
+    TResult Function(AbsenceLoaded value)? loaded,
+    TResult Function(AbsenceError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,18 +84,18 @@ class _$AbsenceStateCopyWithImpl<$Res, $Val extends AbsenceState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$AbsenceLoadingImplCopyWith<$Res> {
+  factory _$$AbsenceLoadingImplCopyWith(_$AbsenceLoadingImpl value,
+          $Res Function(_$AbsenceLoadingImpl) then) =
+      __$$AbsenceLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AbsenceStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$AbsenceLoadingImplCopyWithImpl<$Res>
+    extends _$AbsenceStateCopyWithImpl<$Res, _$AbsenceLoadingImpl>
+    implements _$$AbsenceLoadingImplCopyWith<$Res> {
+  __$$AbsenceLoadingImplCopyWithImpl(
+      _$AbsenceLoadingImpl _value, $Res Function(_$AbsenceLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AbsenceState
@@ -110,125 +104,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'AbsenceState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Absence> absences) loaded,
-    required TResult Function(Failure failure) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Absence> absences)? loaded,
-    TResult? Function(Failure failure)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Absence> absences)? loaded,
-    TResult Function(Failure failure)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements AbsenceState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AbsenceStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AbsenceState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$AbsenceLoadingImpl implements AbsenceLoading {
+  const _$AbsenceLoadingImpl();
 
   @override
   String toString() {
@@ -238,7 +115,7 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$AbsenceLoadingImpl);
   }
 
   @override
@@ -247,7 +124,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Absence> absences) loaded,
     required TResult Function(Failure failure) error,
@@ -258,7 +134,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<Absence> absences)? loaded,
     TResult? Function(Failure failure)? error,
@@ -269,7 +144,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Absence> absences)? loaded,
     TResult Function(Failure failure)? error,
@@ -284,10 +158,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
+    required TResult Function(AbsenceLoading value) loading,
+    required TResult Function(AbsenceLoaded value) loaded,
+    required TResult Function(AbsenceError value) error,
   }) {
     return loading(this);
   }
@@ -295,10 +168,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
+    TResult? Function(AbsenceLoading value)? loading,
+    TResult? Function(AbsenceLoaded value)? loaded,
+    TResult? Function(AbsenceError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -306,10 +178,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
+    TResult Function(AbsenceLoading value)? loading,
+    TResult Function(AbsenceLoaded value)? loaded,
+    TResult Function(AbsenceError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,25 +190,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AbsenceState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class AbsenceLoading implements AbsenceState {
+  const factory AbsenceLoading() = _$AbsenceLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$AbsenceLoadedImplCopyWith<$Res> {
+  factory _$$AbsenceLoadedImplCopyWith(
+          _$AbsenceLoadedImpl value, $Res Function(_$AbsenceLoadedImpl) then) =
+      __$$AbsenceLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Absence> absences});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$AbsenceStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$AbsenceLoadedImplCopyWithImpl<$Res>
+    extends _$AbsenceStateCopyWithImpl<$Res, _$AbsenceLoadedImpl>
+    implements _$$AbsenceLoadedImplCopyWith<$Res> {
+  __$$AbsenceLoadedImplCopyWithImpl(
+      _$AbsenceLoadedImpl _value, $Res Function(_$AbsenceLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AbsenceState
@@ -347,7 +218,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? absences = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$AbsenceLoadedImpl(
       null == absences
           ? _value._absences
           : absences // ignore: cast_nullable_to_non_nullable
@@ -358,8 +229,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<Absence> absences) : _absences = absences;
+class _$AbsenceLoadedImpl implements AbsenceLoaded {
+  const _$AbsenceLoadedImpl(final List<Absence> absences)
+      : _absences = absences;
 
   final List<Absence> _absences;
   @override
@@ -378,7 +250,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$AbsenceLoadedImpl &&
             const DeepCollectionEquality().equals(other._absences, _absences));
   }
 
@@ -391,13 +263,12 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$AbsenceLoadedImplCopyWith<_$AbsenceLoadedImpl> get copyWith =>
+      __$$AbsenceLoadedImplCopyWithImpl<_$AbsenceLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Absence> absences) loaded,
     required TResult Function(Failure failure) error,
@@ -408,7 +279,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<Absence> absences)? loaded,
     TResult? Function(Failure failure)? error,
@@ -419,7 +289,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Absence> absences)? loaded,
     TResult Function(Failure failure)? error,
@@ -434,10 +303,9 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
+    required TResult Function(AbsenceLoading value) loading,
+    required TResult Function(AbsenceLoaded value) loaded,
+    required TResult Function(AbsenceError value) error,
   }) {
     return loaded(this);
   }
@@ -445,10 +313,9 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
+    TResult? Function(AbsenceLoading value)? loading,
+    TResult? Function(AbsenceLoaded value)? loaded,
+    TResult? Function(AbsenceError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -456,10 +323,9 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
+    TResult Function(AbsenceLoading value)? loading,
+    TResult Function(AbsenceLoaded value)? loaded,
+    TResult Function(AbsenceError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -469,23 +335,24 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements AbsenceState {
-  const factory _Loaded(final List<Absence> absences) = _$LoadedImpl;
+abstract class AbsenceLoaded implements AbsenceState {
+  const factory AbsenceLoaded(final List<Absence> absences) =
+      _$AbsenceLoadedImpl;
 
   List<Absence> get absences;
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$AbsenceLoadedImplCopyWith<_$AbsenceLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract class _$$AbsenceErrorImplCopyWith<$Res> {
+  factory _$$AbsenceErrorImplCopyWith(
+          _$AbsenceErrorImpl value, $Res Function(_$AbsenceErrorImpl) then) =
+      __$$AbsenceErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Failure failure});
 
@@ -493,11 +360,11 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AbsenceStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$AbsenceErrorImplCopyWithImpl<$Res>
+    extends _$AbsenceStateCopyWithImpl<$Res, _$AbsenceErrorImpl>
+    implements _$$AbsenceErrorImplCopyWith<$Res> {
+  __$$AbsenceErrorImplCopyWithImpl(
+      _$AbsenceErrorImpl _value, $Res Function(_$AbsenceErrorImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AbsenceState
@@ -507,7 +374,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? failure = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_$AbsenceErrorImpl(
       null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -528,8 +395,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.failure);
+class _$AbsenceErrorImpl implements AbsenceError {
+  const _$AbsenceErrorImpl(this.failure);
 
   @override
   final Failure failure;
@@ -543,7 +410,7 @@ class _$ErrorImpl implements _Error {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$AbsenceErrorImpl &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
@@ -555,13 +422,12 @@ class _$ErrorImpl implements _Error {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  _$$AbsenceErrorImplCopyWith<_$AbsenceErrorImpl> get copyWith =>
+      __$$AbsenceErrorImplCopyWithImpl<_$AbsenceErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Absence> absences) loaded,
     required TResult Function(Failure failure) error,
@@ -572,7 +438,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<Absence> absences)? loaded,
     TResult? Function(Failure failure)? error,
@@ -583,7 +448,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Absence> absences)? loaded,
     TResult Function(Failure failure)? error,
@@ -598,10 +462,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
+    required TResult Function(AbsenceLoading value) loading,
+    required TResult Function(AbsenceLoaded value) loaded,
+    required TResult Function(AbsenceError value) error,
   }) {
     return error(this);
   }
@@ -609,10 +472,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
+    TResult? Function(AbsenceLoading value)? loading,
+    TResult? Function(AbsenceLoaded value)? loaded,
+    TResult? Function(AbsenceError value)? error,
   }) {
     return error?.call(this);
   }
@@ -620,10 +482,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
+    TResult Function(AbsenceLoading value)? loading,
+    TResult Function(AbsenceLoaded value)? loaded,
+    TResult Function(AbsenceError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -633,14 +494,14 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements AbsenceState {
-  const factory _Error(final Failure failure) = _$ErrorImpl;
+abstract class AbsenceError implements AbsenceState {
+  const factory AbsenceError(final Failure failure) = _$AbsenceErrorImpl;
 
   Failure get failure;
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$AbsenceErrorImplCopyWith<_$AbsenceErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

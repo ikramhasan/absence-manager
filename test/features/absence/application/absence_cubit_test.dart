@@ -31,8 +31,8 @@ void main() {
 
   const genericFailure = Failure(code: 101, message: 'Error');
 
-  test('initial state is AbsenceState.initial', () {
-    expect(absenceCubit.state, const AbsenceState.initial());
+  test('initial state is AbsenceState.loading', () {
+    expect(absenceCubit.state, const AbsenceState.loading());
   });
 
   blocTest<AbsenceCubit, AbsenceState>(
