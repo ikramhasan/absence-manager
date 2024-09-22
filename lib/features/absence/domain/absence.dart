@@ -1,3 +1,4 @@
+import 'package:absence_manager/features/core/domain/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'absence.freezed.dart';
@@ -34,6 +35,7 @@ class Absence with _$Absence {
     DateTime? rejectedAt,
     int? admitterId,
     DateTime? confirmedAt,
+    User? user,
   }) = _Absence;
 
   /// Creates an [Absence] instance from a JSON object.

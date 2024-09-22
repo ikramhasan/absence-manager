@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:absence_manager/features/absence/domain/absence.dart';
+import 'package:absence_manager/features/core/domain/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../fixtures/fixture_reader.dart';
@@ -28,6 +29,31 @@ void main() {
       expect(absence.memberNote, 'Member Note');
       expect(absence.userId, 1);
       expect(absence.type, Type.sickness);
+    });
+
+    test('should create an absence with an user if user is present', () {
+      const user = User(
+        id: 1,
+        crewId: 1,
+        name: 'John Doe',
+        image: 'https://example.com/image.jpg',
+        userId: 1,
+      );
+
+      final absence = Absence(
+        admitterNote: 'Admitter Note',
+        createdAt: DateTime.parse('2023-01-01T00:00:00.000Z'),
+        crewId: 1,
+        startDate: DateTime.parse('2023-01-02T00:00:00.000Z'),
+        endDate: DateTime.parse('2023-01-03T00:00:00.000Z'),
+        id: 1,
+        memberNote: 'Member Note',
+        userId: 1,
+        type: Type.sickness,
+        user: user,
+      );
+
+      expect(absence.user, user);
     });
 
     test('should create an Absence instance from JSON', () async {

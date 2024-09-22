@@ -24,6 +24,9 @@ _$AbsenceImpl _$$AbsenceImplFromJson(Map<String, dynamic> json) =>
       confirmedAt: json['confirmedAt'] == null
           ? null
           : DateTime.parse(json['confirmedAt'] as String),
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
@@ -40,6 +43,7 @@ Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
       'rejectedAt': instance.rejectedAt?.toIso8601String(),
       'admitterId': instance.admitterId,
       'confirmedAt': instance.confirmedAt?.toIso8601String(),
+      'user': instance.user,
     };
 
 const _$TypeEnumMap = {
