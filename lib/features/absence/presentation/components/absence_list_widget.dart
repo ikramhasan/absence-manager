@@ -1,8 +1,11 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// A widget displaying a list of absences.
 class AbsenceListWidget extends StatelessWidget {
+  /// Creates an [AbsenceListWidget] instance.
   const AbsenceListWidget({super.key});
 
   @override
@@ -16,10 +19,7 @@ class AbsenceListWidget extends StatelessWidget {
               itemCount: state.absences.length,
               itemBuilder: (context, index) {
                 final absence = state.absences[index];
-                return ListTile(
-                  title: Text(absence.user!.name),
-                  subtitle: Text(absence.memberNote),
-                );
+                return AbsenceCard(absence: absence);
               },
             );
           },

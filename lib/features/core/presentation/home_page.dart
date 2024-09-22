@@ -10,7 +10,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Absence Manager'),
       ),
-      body: const AbsenceListWidget(),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        child: AbsenceListWidget(),
+      ),
     );
   }
 }
