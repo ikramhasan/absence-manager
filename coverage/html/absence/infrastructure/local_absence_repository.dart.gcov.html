@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-09-22 17:17:39</td>
+            <td class="headerValue">2024-09-22 17:29:32</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -73,17 +73,17 @@
 <span id="L11"><span class="lineNum">      11</span>              : </span>
 <span id="L12"><span class="lineNum">      12</span>              : /// A concrete class representing the local absence repository.</span>
 <span id="L13"><span class="lineNum">      13</span>              : class LocalAbsenceRepository implements IAbsenceRepository {</span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC tlaBgGNC">           1 :   LocalAbsenceRepository({required this.memberFile, required this.absenceFile});</span></span>
-<span id="L15"><span class="lineNum">      15</span>              : </span>
-<span id="L16"><span class="lineNum">      16</span>              :   // LocalAbsenceRepository._();</span>
-<span id="L17"><span class="lineNum">      17</span>              :   final File memberFile;</span>
-<span id="L18"><span class="lineNum">      18</span>              :   final File absenceFile;</span>
+<span id="L14"><span class="lineNum">      14</span>              :   /// Creates an instance of the [LocalAbsenceRepository].</span>
+<span id="L15"><span class="lineNum">      15</span>              :   ///</span>
+<span id="L16"><span class="lineNum">      16</span>              :   /// The [memberFile] is the file containing the members.</span>
+<span id="L17"><span class="lineNum">      17</span>              :   /// The [absenceFile] is the file containing the absences.</span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC tlaBgGNC">           1 :   LocalAbsenceRepository({required this.memberFile, required this.absenceFile});</span></span>
 <span id="L19"><span class="lineNum">      19</span>              : </span>
-<span id="L20"><span class="lineNum">      20</span>              :   /// The instance of the [LocalAbsenceRepository].</span>
-<span id="L21"><span class="lineNum">      21</span>              :   // static final LocalAbsenceRepository instance = LocalAbsenceRepository._();</span>
+<span id="L20"><span class="lineNum">      20</span>              :   /// The file containing the members.</span>
+<span id="L21"><span class="lineNum">      21</span>              :   final File memberFile;</span>
 <span id="L22"><span class="lineNum">      22</span>              : </span>
-<span id="L23"><span class="lineNum">      23</span>              :   /// The base URL for the local data.</span>
-<span id="L24"><span class="lineNum">      24</span>              :   static const baseUrl = 'lib/features/absence/data';</span>
+<span id="L23"><span class="lineNum">      23</span>              :   /// The file containing the absences.</span>
+<span id="L24"><span class="lineNum">      24</span>              :   final File absenceFile;</span>
 <span id="L25"><span class="lineNum">      25</span>              : </span>
 <span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           1 :   @override</span></span>
 <span id="L27"><span class="lineNum">      27</span>              :   Future&lt;Either&lt;Failure, List&lt;Absence&gt;&gt;&gt; fetchAbsencesWithMembers() async {</span>

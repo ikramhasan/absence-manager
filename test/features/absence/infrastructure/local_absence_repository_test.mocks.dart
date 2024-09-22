@@ -4,18 +4,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:convert' as _i10;
+import 'dart:convert' as _i5;
 import 'dart:io' as _i2;
-import 'dart:typed_data' as _i11;
+import 'dart:typed_data' as _i6;
 
-import 'package:absence_manager/features/absence/domain/absence.dart' as _i7;
-import 'package:absence_manager/features/absence/infrastructure/local_absence_repository.dart'
-    as _i3;
-import 'package:absence_manager/features/core/domain/failure.dart' as _i6;
-import 'package:absence_manager/features/core/domain/user.dart' as _i9;
-import 'package:fpdart/fpdart.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i8;
+import 'package:mockito/src/dummies.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -112,87 +106,6 @@ class _FakeFileStat_7 extends _i1.SmartFake implements _i2.FileStat {
         );
 }
 
-/// A class which mocks [LocalAbsenceRepository].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockLocalAbsenceRepository extends _i1.Mock
-    implements _i3.LocalAbsenceRepository {
-  @override
-  _i2.File get memberFile => (super.noSuchMethod(
-        Invocation.getter(#memberFile),
-        returnValue: _FakeFile_0(
-          this,
-          Invocation.getter(#memberFile),
-        ),
-        returnValueForMissingStub: _FakeFile_0(
-          this,
-          Invocation.getter(#memberFile),
-        ),
-      ) as _i2.File);
-
-  @override
-  _i2.File get absenceFile => (super.noSuchMethod(
-        Invocation.getter(#absenceFile),
-        returnValue: _FakeFile_0(
-          this,
-          Invocation.getter(#absenceFile),
-        ),
-        returnValueForMissingStub: _FakeFile_0(
-          this,
-          Invocation.getter(#absenceFile),
-        ),
-      ) as _i2.File);
-
-  @override
-  _i4.Future<_i5.Either<_i6.Failure, List<_i7.Absence>>>
-      fetchAbsencesWithMembers() => (super.noSuchMethod(
-            Invocation.method(
-              #fetchAbsencesWithMembers,
-              [],
-            ),
-            returnValue:
-                _i4.Future<_i5.Either<_i6.Failure, List<_i7.Absence>>>.value(
-                    _i8.dummyValue<_i5.Either<_i6.Failure, List<_i7.Absence>>>(
-              this,
-              Invocation.method(
-                #fetchAbsencesWithMembers,
-                [],
-              ),
-            )),
-            returnValueForMissingStub:
-                _i4.Future<_i5.Either<_i6.Failure, List<_i7.Absence>>>.value(
-                    _i8.dummyValue<_i5.Either<_i6.Failure, List<_i7.Absence>>>(
-              this,
-              Invocation.method(
-                #fetchAbsencesWithMembers,
-                [],
-              ),
-            )),
-          ) as _i4.Future<_i5.Either<_i6.Failure, List<_i7.Absence>>>);
-
-  @override
-  _i4.Future<List<_i7.Absence>> readAbsences() => (super.noSuchMethod(
-        Invocation.method(
-          #readAbsences,
-          [],
-        ),
-        returnValue: _i4.Future<List<_i7.Absence>>.value(<_i7.Absence>[]),
-        returnValueForMissingStub:
-            _i4.Future<List<_i7.Absence>>.value(<_i7.Absence>[]),
-      ) as _i4.Future<List<_i7.Absence>>);
-
-  @override
-  _i4.Future<List<_i9.User>> readUsers() => (super.noSuchMethod(
-        Invocation.method(
-          #readUsers,
-          [],
-        ),
-        returnValue: _i4.Future<List<_i9.User>>.value(<_i9.User>[]),
-        returnValueForMissingStub:
-            _i4.Future<List<_i9.User>>.value(<_i9.User>[]),
-      ) as _i4.Future<List<_i9.User>>);
-}
-
 /// A class which mocks [File].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -213,11 +126,11 @@ class MockFile extends _i1.Mock implements _i2.File {
   @override
   String get path => (super.noSuchMethod(
         Invocation.getter(#path),
-        returnValue: _i8.dummyValue<String>(
+        returnValue: _i3.dummyValue<String>(
           this,
           Invocation.getter(#path),
         ),
-        returnValueForMissingStub: _i8.dummyValue<String>(
+        returnValueForMissingStub: _i3.dummyValue<String>(
           this,
           Invocation.getter(#path),
         ),
@@ -658,7 +571,7 @@ class MockFile extends _i1.Mock implements _i2.File {
   @override
   _i2.IOSink openWrite({
     _i2.FileMode? mode = _i2.FileMode.write,
-    _i10.Encoding? encoding = const _i10.Utf8Codec(),
+    _i5.Encoding? encoding = const _i5.Utf8Codec(),
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -694,36 +607,36 @@ class MockFile extends _i1.Mock implements _i2.File {
       ) as _i2.IOSink);
 
   @override
-  _i4.Future<_i11.Uint8List> readAsBytes() => (super.noSuchMethod(
+  _i4.Future<_i6.Uint8List> readAsBytes() => (super.noSuchMethod(
         Invocation.method(
           #readAsBytes,
           [],
         ),
-        returnValue: _i4.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
+        returnValue: _i4.Future<_i6.Uint8List>.value(_i6.Uint8List(0)),
         returnValueForMissingStub:
-            _i4.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
-      ) as _i4.Future<_i11.Uint8List>);
+            _i4.Future<_i6.Uint8List>.value(_i6.Uint8List(0)),
+      ) as _i4.Future<_i6.Uint8List>);
 
   @override
-  _i11.Uint8List readAsBytesSync() => (super.noSuchMethod(
+  _i6.Uint8List readAsBytesSync() => (super.noSuchMethod(
         Invocation.method(
           #readAsBytesSync,
           [],
         ),
-        returnValue: _i11.Uint8List(0),
-        returnValueForMissingStub: _i11.Uint8List(0),
-      ) as _i11.Uint8List);
+        returnValue: _i6.Uint8List(0),
+        returnValueForMissingStub: _i6.Uint8List(0),
+      ) as _i6.Uint8List);
 
   @override
   _i4.Future<String> readAsString(
-          {_i10.Encoding? encoding = const _i10.Utf8Codec()}) =>
+          {_i5.Encoding? encoding = const _i5.Utf8Codec()}) =>
       (super.noSuchMethod(
         Invocation.method(
           #readAsString,
           [],
           {#encoding: encoding},
         ),
-        returnValue: _i4.Future<String>.value(_i8.dummyValue<String>(
+        returnValue: _i4.Future<String>.value(_i3.dummyValue<String>(
           this,
           Invocation.method(
             #readAsString,
@@ -732,7 +645,7 @@ class MockFile extends _i1.Mock implements _i2.File {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<String>.value(_i8.dummyValue<String>(
+            _i4.Future<String>.value(_i3.dummyValue<String>(
           this,
           Invocation.method(
             #readAsString,
@@ -743,14 +656,14 @@ class MockFile extends _i1.Mock implements _i2.File {
       ) as _i4.Future<String>);
 
   @override
-  String readAsStringSync({_i10.Encoding? encoding = const _i10.Utf8Codec()}) =>
+  String readAsStringSync({_i5.Encoding? encoding = const _i5.Utf8Codec()}) =>
       (super.noSuchMethod(
         Invocation.method(
           #readAsStringSync,
           [],
           {#encoding: encoding},
         ),
-        returnValue: _i8.dummyValue<String>(
+        returnValue: _i3.dummyValue<String>(
           this,
           Invocation.method(
             #readAsStringSync,
@@ -758,7 +671,7 @@ class MockFile extends _i1.Mock implements _i2.File {
             {#encoding: encoding},
           ),
         ),
-        returnValueForMissingStub: _i8.dummyValue<String>(
+        returnValueForMissingStub: _i3.dummyValue<String>(
           this,
           Invocation.method(
             #readAsStringSync,
@@ -770,7 +683,7 @@ class MockFile extends _i1.Mock implements _i2.File {
 
   @override
   _i4.Future<List<String>> readAsLines(
-          {_i10.Encoding? encoding = const _i10.Utf8Codec()}) =>
+          {_i5.Encoding? encoding = const _i5.Utf8Codec()}) =>
       (super.noSuchMethod(
         Invocation.method(
           #readAsLines,
@@ -783,7 +696,7 @@ class MockFile extends _i1.Mock implements _i2.File {
 
   @override
   List<String> readAsLinesSync(
-          {_i10.Encoding? encoding = const _i10.Utf8Codec()}) =>
+          {_i5.Encoding? encoding = const _i5.Utf8Codec()}) =>
       (super.noSuchMethod(
         Invocation.method(
           #readAsLinesSync,
@@ -855,7 +768,7 @@ class MockFile extends _i1.Mock implements _i2.File {
   _i4.Future<_i2.File> writeAsString(
     String? contents, {
     _i2.FileMode? mode = _i2.FileMode.write,
-    _i10.Encoding? encoding = const _i10.Utf8Codec(),
+    _i5.Encoding? encoding = const _i5.Utf8Codec(),
     bool? flush = false,
   }) =>
       (super.noSuchMethod(
@@ -898,7 +811,7 @@ class MockFile extends _i1.Mock implements _i2.File {
   void writeAsStringSync(
     String? contents, {
     _i2.FileMode? mode = _i2.FileMode.write,
-    _i10.Encoding? encoding = const _i10.Utf8Codec(),
+    _i5.Encoding? encoding = const _i5.Utf8Codec(),
     bool? flush = false,
   }) =>
       super.noSuchMethod(
@@ -940,7 +853,7 @@ class MockFile extends _i1.Mock implements _i2.File {
           #resolveSymbolicLinks,
           [],
         ),
-        returnValue: _i4.Future<String>.value(_i8.dummyValue<String>(
+        returnValue: _i4.Future<String>.value(_i3.dummyValue<String>(
           this,
           Invocation.method(
             #resolveSymbolicLinks,
@@ -948,7 +861,7 @@ class MockFile extends _i1.Mock implements _i2.File {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<String>.value(_i8.dummyValue<String>(
+            _i4.Future<String>.value(_i3.dummyValue<String>(
           this,
           Invocation.method(
             #resolveSymbolicLinks,
@@ -963,14 +876,14 @@ class MockFile extends _i1.Mock implements _i2.File {
           #resolveSymbolicLinksSync,
           [],
         ),
-        returnValue: _i8.dummyValue<String>(
+        returnValue: _i3.dummyValue<String>(
           this,
           Invocation.method(
             #resolveSymbolicLinksSync,
             [],
           ),
         ),
-        returnValueForMissingStub: _i8.dummyValue<String>(
+        returnValueForMissingStub: _i3.dummyValue<String>(
           this,
           Invocation.method(
             #resolveSymbolicLinksSync,
