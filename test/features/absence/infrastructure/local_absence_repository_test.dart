@@ -1,25 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:absence_manager/features/absence/infrastructure/local_absence_repository.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'local_absence_repository_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<File>()])
+@GenerateNiceMocks([MockSpec<AssetBundle>()])
 void main() {
   late LocalAbsenceRepository repository;
-  late MockFile memberFile;
-  late MockFile absenceFile;
+  late MockAssetBundle rootBundle;
 
   setUp(() {
-    memberFile = MockFile();
-    absenceFile = MockFile();
-    repository = LocalAbsenceRepository(
-      memberFile: memberFile,
-      absenceFile: absenceFile,
-    );
+    TestWidgetsFlutterBinding.ensureInitialized();
+    rootBundle = MockAssetBundle();
+    repository = LocalAbsenceRepository(rootBundle);
   });
 
   final absenceJson = jsonEncode({
@@ -56,9 +53,10 @@ void main() {
     test('fetchAbsencesWithMembers returns list of absences with users',
         () async {
       // Arrange
-
-      when(absenceFile.readAsString()).thenAnswer((_) async => absenceJson);
-      when(memberFile.readAsString()).thenAnswer((_) async => userJson);
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJson);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenAnswer((_) async => userJson);
 
       // Act
       final result = await repository.fetchAbsencesWithMembers();
@@ -89,8 +87,9 @@ void main() {
         ],
       });
 
-      when(absenceFile.readAsString()).thenAnswer((_) async => absenceJson);
-      when(memberFile.readAsString())
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJson);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
           .thenAnswer((_) async => userJsonWithAnotherID);
 
       // Act
@@ -109,7 +108,8 @@ void main() {
 
     test('fetchAbsencesWithMembers returns general exception', () async {
       // Arrange
-      when(memberFile.readAsString()).thenThrow(Exception('File read error'));
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenThrow(Exception('File read error'));
 
       // Act
       final result = await repository.fetchAbsencesWithMembers();
@@ -127,7 +127,8 @@ void main() {
 
     test('readAbsences returns list of absences', () async {
       // Arrange
-      when(absenceFile.readAsString()).thenAnswer((_) async => absenceJson);
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJson);
 
       // Act
       final result = await repository.readAbsences();
@@ -139,8 +140,8 @@ void main() {
 
     test('readUsers returns list of users', () async {
       // Arrange
-
-      when(memberFile.readAsString()).thenAnswer((_) async => userJson);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenAnswer((_) async => userJson);
 
       // Act
       final result = await repository.readUsers();
