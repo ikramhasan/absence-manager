@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:absence_manager/features/core/domain/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../fixtures/fixture_reader.dart';
+import '../../../fixtures/fixture_reader.dart';
 
 void main() {
   group('fromJson', () {
