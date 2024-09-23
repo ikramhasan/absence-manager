@@ -1,5 +1,7 @@
+import 'package:absence_manager/features/absence/presentation/components/absence_date_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_list_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_table_widget.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/core/assets/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
@@ -29,6 +31,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return AdaptiveScaffold(
       transitionDuration: const Duration(milliseconds: 1),
       smallBreakpoint: const Breakpoint(endWidth: 700),
@@ -45,7 +49,21 @@ class _HomePageState extends State<HomePage> {
         });
       },
       appBar: AppBar(
+        centerTitle: false,
         title: const Text('Absence Manager'),
+        actions: [
+          if (width <= 700)
+            const Row(
+              children: [
+                AbsenceTypeFilterWidget(),
+                SizedBox(width: 16),
+                AbsenceDateFilterWidget(),
+                SizedBox(width: 16),
+              ],
+            )
+          else
+            const SizedBox(),
+        ],
       ),
       smallBody: (_) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),

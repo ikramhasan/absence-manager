@@ -26,6 +26,7 @@ class AbsenceManagerApp extends StatelessWidget {
         )..fetchAbsencesWithMembers(),
         child: MaterialApp(
           title: 'Absence Manager',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
