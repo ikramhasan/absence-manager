@@ -1,4 +1,5 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_date_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_status_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_widget.dart';
@@ -6,6 +7,7 @@ import 'package:absence_manager/features/absence/presentation/components/data_ta
 import 'package:absence_manager/features/absence/presentation/components/data_table/member_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/pagination_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/period_row_widget.dart';
+import 'package:absence_manager/features/absence/presentation/components/reload_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +30,11 @@ class AbsenceTableWidget extends StatelessWidget {
                 const Row(
                   children: [
                     AbsenceTypeFilterWidget(),
+                    SizedBox(width: 16),
+                    AbsenceDateFilterWidget(),
                     Spacer(),
+                    ReloadWidget(),
+                    SizedBox(width: 16),
                     PaginationWidget(),
                     SizedBox(width: 16),
                   ],
