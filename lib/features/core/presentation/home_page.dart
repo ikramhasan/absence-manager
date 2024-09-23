@@ -1,4 +1,5 @@
 import 'package:absence_manager/features/absence/presentation/components/absence_list_widget.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_table_widget.dart';
 import 'package:absence_manager/features/core/assets/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
@@ -16,15 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
-  final pages = [
+  final smallPages = [
     const AbsenceListWidget(),
+    const Center(child: Text('Settings')),
+  ];
+
+  final largePages = [
+    const AbsenceTableWidget(),
     const Center(child: Text('Settings')),
   ];
 
   @override
   Widget build(BuildContext context) {
     return AdaptiveScaffold(
-      transitionDuration: const Duration(milliseconds: 100),
+      transitionDuration: const Duration(milliseconds: 1),
       smallBreakpoint: const Breakpoint(endWidth: 700),
       mediumBreakpoint: const Breakpoint(beginWidth: 700, endWidth: 1000),
       mediumLargeBreakpoint: const Breakpoint(beginWidth: 1000, endWidth: 1200),
@@ -43,8 +49,9 @@ class _HomePageState extends State<HomePage> {
       ),
       smallBody: (_) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: pages[selectedIndex],
+        child: smallPages[selectedIndex],
       ),
+      body: (_) => largePages[selectedIndex],
       destinations: [
         NavigationDestination(
           icon: SvgPicture.asset(
