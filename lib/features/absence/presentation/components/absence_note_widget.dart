@@ -26,8 +26,6 @@ class AbsenceNoteWidget extends StatelessWidget {
     return note.isNullOrEmpty
         ? const SizedBox.shrink()
         : BlocBuilder<SettingsCubit, SettingsState>(
-            buildWhen: (previous, current) =>
-                previous.settings.isDarkTheme != current.settings.isDarkTheme,
             builder: (context, state) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

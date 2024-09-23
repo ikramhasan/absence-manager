@@ -3,15 +3,20 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i10;
 
 import 'package:absence_manager/features/absence/application/absence_cubit.dart'
     as _i2;
-import 'package:absence_manager/features/absence/domain/absence.dart' as _i5;
-import 'package:absence_manager/features/core/domain/failure.dart' as _i6;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i4;
+import 'package:absence_manager/features/absence/domain/absence.dart' as _i7;
+import 'package:absence_manager/features/core/domain/failure.dart' as _i8;
+import 'package:absence_manager/features/settings/application/settings_cubit.dart'
+    as _i3;
+import 'package:absence_manager/features/settings/domain/app_settings.dart'
+    as _i4;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,6 +33,37 @@ import 'package:mockito/src/dummies.dart' as _i7;
 
 class _FakeAbsenceState_0 extends _i1.SmartFake implements _i2.AbsenceState {
   _FakeAbsenceState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeSettingsState_1 extends _i1.SmartFake implements _i3.SettingsState {
+  _FakeSettingsState_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeAppSettings_2 extends _i1.SmartFake implements _i4.AppSettings {
+  _FakeAppSettings_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _Fake$SettingsStateCopyWith_3<$Res> extends _i1.SmartFake
+    implements _i3.$SettingsStateCopyWith<$Res> {
+  _Fake$SettingsStateCopyWith_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -54,11 +90,11 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
       ) as _i2.AbsenceState);
 
   @override
-  _i3.Stream<_i2.AbsenceState> get stream => (super.noSuchMethod(
+  _i5.Stream<_i2.AbsenceState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i3.Stream<_i2.AbsenceState>.empty(),
-        returnValueForMissingStub: _i3.Stream<_i2.AbsenceState>.empty(),
-      ) as _i3.Stream<_i2.AbsenceState>);
+        returnValue: _i5.Stream<_i2.AbsenceState>.empty(),
+        returnValueForMissingStub: _i5.Stream<_i2.AbsenceState>.empty(),
+      ) as _i5.Stream<_i2.AbsenceState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -68,7 +104,7 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
       ) as bool);
 
   @override
-  _i3.Future<void> fetchAbsencesWithMembers({
+  _i5.Future<void> fetchAbsencesWithMembers({
     int? page = 1,
     int? limit = 10,
     String? type,
@@ -89,9 +125,9 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
             #persist: persist,
           },
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   void loadMoreAbsences() => super.noSuchMethod(
@@ -129,7 +165,7 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
       );
 
   @override
-  void onChange(_i4.Change<_i2.AbsenceState>? change) => super.noSuchMethod(
+  void onChange(_i6.Change<_i2.AbsenceState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -170,14 +206,14 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
       );
 
   @override
-  _i3.Future<void> close() => (super.noSuchMethod(
+  _i5.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [AbsenceState].
@@ -188,12 +224,12 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
   TResult when<TResult extends Object?>({
     required TResult Function()? loading,
     required TResult Function(
-      List<_i5.Absence>,
+      List<_i7.Absence>,
       int,
       int,
       bool,
     )? loaded,
-    required TResult Function(_i6.Failure)? error,
+    required TResult Function(_i8.Failure)? error,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -205,7 +241,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             #error: error,
           },
         ),
-        returnValue: _i7.dummyValue<TResult>(
+        returnValue: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #when,
@@ -217,7 +253,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             },
           ),
         ),
-        returnValueForMissingStub: _i7.dummyValue<TResult>(
+        returnValueForMissingStub: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #when,
@@ -235,12 +271,12 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
-      List<_i5.Absence>,
+      List<_i7.Absence>,
       int,
       int,
       bool,
     )? loaded,
-    TResult Function(_i6.Failure)? error,
+    TResult Function(_i8.Failure)? error,
     required TResult Function()? orElse,
   }) =>
       (super.noSuchMethod(
@@ -254,7 +290,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             #orElse: orElse,
           },
         ),
-        returnValue: _i7.dummyValue<TResult>(
+        returnValue: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #maybeWhen,
@@ -267,7 +303,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             },
           ),
         ),
-        returnValueForMissingStub: _i7.dummyValue<TResult>(
+        returnValueForMissingStub: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #maybeWhen,
@@ -298,7 +334,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             #error: error,
           },
         ),
-        returnValue: _i7.dummyValue<TResult>(
+        returnValue: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #map,
@@ -310,7 +346,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             },
           ),
         ),
-        returnValueForMissingStub: _i7.dummyValue<TResult>(
+        returnValueForMissingStub: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #map,
@@ -342,7 +378,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             #orElse: orElse,
           },
         ),
-        returnValue: _i7.dummyValue<TResult>(
+        returnValue: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #maybeMap,
@@ -355,7 +391,7 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
             },
           ),
         ),
-        returnValueForMissingStub: _i7.dummyValue<TResult>(
+        returnValueForMissingStub: _i9.dummyValue<TResult>(
           this,
           Invocation.method(
             #maybeMap,
@@ -369,4 +405,170 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
           ),
         ),
       ) as TResult);
+}
+
+/// A class which mocks [SettingsCubit].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSettingsCubit extends _i1.Mock implements _i3.SettingsCubit {
+  @override
+  _i3.SettingsState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeSettingsState_1(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeSettingsState_1(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i3.SettingsState);
+
+  @override
+  _i5.Stream<_i3.SettingsState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i5.Stream<_i3.SettingsState>.empty(),
+        returnValueForMissingStub: _i5.Stream<_i3.SettingsState>.empty(),
+      ) as _i5.Stream<_i3.SettingsState>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Future<void> changeTheme() => (super.noSuchMethod(
+        Invocation.method(
+          #changeTheme,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> changeLanguage(_i10.Locale? locale) => (super.noSuchMethod(
+        Invocation.method(
+          #changeLanguage,
+          [locale],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> updateHapticFeedbackImpact(String? impact) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateHapticFeedbackImpact,
+          [impact],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> loadSettings() => (super.noSuchMethod(
+        Invocation.method(
+          #loadSettings,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void emit(_i3.SettingsState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i6.Change<_i3.SettingsState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [SettingsState].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSettingsState extends _i1.Mock implements _i3.SettingsState {
+  @override
+  _i4.AppSettings get settings => (super.noSuchMethod(
+        Invocation.getter(#settings),
+        returnValue: _FakeAppSettings_2(
+          this,
+          Invocation.getter(#settings),
+        ),
+        returnValueForMissingStub: _FakeAppSettings_2(
+          this,
+          Invocation.getter(#settings),
+        ),
+      ) as _i4.AppSettings);
+
+  @override
+  _i3.$SettingsStateCopyWith<_i3.SettingsState> get copyWith =>
+      (super.noSuchMethod(
+        Invocation.getter(#copyWith),
+        returnValue: _Fake$SettingsStateCopyWith_3<_i3.SettingsState>(
+          this,
+          Invocation.getter(#copyWith),
+        ),
+        returnValueForMissingStub:
+            _Fake$SettingsStateCopyWith_3<_i3.SettingsState>(
+          this,
+          Invocation.getter(#copyWith),
+        ),
+      ) as _i3.$SettingsStateCopyWith<_i3.SettingsState>);
 }

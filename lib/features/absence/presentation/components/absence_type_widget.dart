@@ -17,8 +17,6 @@ class AbsenceTypeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
-      buildWhen: (previous, current) =>
-          previous.settings.isDarkTheme != current.settings.isDarkTheme,
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.symmetric(

@@ -16,8 +16,6 @@ class AbsenceStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
-      buildWhen: (previous, current) =>
-          previous.settings.isDarkTheme != current.settings.isDarkTheme,
       builder: (context, state) {
         final rejectedContainerColor = state.settings.isDarkTheme
             ? const Color(0xFF780101).withOpacity(0.54)
