@@ -17,6 +17,9 @@ The easiest way to test the project is by navigating to the deployed site.
 
 To run it manually in you local machine, follow the steps below:
 
+<details>
+<summary>Manual build process</summary>
+
 1. Clone the repository
 
 ```bash
@@ -40,6 +43,8 @@ flutter pub get
 ```bash
 flutter run
 ```
+
+</details>
 
 
 ## Product Requirements
@@ -78,6 +83,9 @@ Every single line of code has been tested with unit tests and widget tests. Here
 
 <img src="docs/code-coverage.png" />
 
+<details>
+<summary>Verify</summary>
+
 You can verify the test coverage by running the following command:
 
 ```bash
@@ -85,6 +93,8 @@ flutter test --coverage
 ```
 
 and navigating to the generated `/coverage` directory.
+
+</details>
 
 ### Pagination
 
