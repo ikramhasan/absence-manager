@@ -1,13 +1,14 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_date_filter_widget.dart';
-import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_status_widget.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/date_range_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/member_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/pagination_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/period_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/reload_widget.dart';
+import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,15 +50,23 @@ class AbsenceTableWidget extends StatelessWidget {
                       ),
                       headingTextStyle:
                           const TextStyle(fontWeight: FontWeight.bold),
-                      columns: const [
-                        DataColumn(label: Text('ID'), numeric: true),
-                        DataColumn(label: Text('Member')),
-                        DataColumn(label: Text('Date')),
-                        DataColumn(label: Text('Period')),
-                        DataColumn(label: Text('Type')),
-                        DataColumn(label: Text('Status')),
-                        DataColumn(label: Text('Member Note')),
-                        DataColumn(label: Text('Admitter Note')),
+                      columns: [
+                        DataColumn(label: Text(context.l10n.id), numeric: true),
+                        DataColumn(label: Text(context.l10n.member)),
+                        DataColumn(label: Text(context.l10n.date)),
+                        DataColumn(label: Text(context.l10n.period)),
+                        DataColumn(label: Text(context.l10n.type)),
+                        DataColumn(label: Text(context.l10n.status)),
+                        DataColumn(
+                          label: Text(
+                            '${context.l10n.member} ${context.l10n.note}',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            '${context.l10n.admitter} ${context.l10n.note}',
+                          ),
+                        ),
                       ],
                       rows: state.absences
                           .map(

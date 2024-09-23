@@ -1,0 +1,30 @@
+{
+  "@@locale": "en",
+  "language": "English",
+  "@language": {
+    "description": "The current language"
+  },
+  "appName": "Absence Manager",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "hapticFeedback": "Haptic Feedback",
+  "selectHapticFeedbackStrength": "Select Haptic Feedback Strength",
+  "preferences": "Preferences",
+  "darkMode": "Dark Mode",
+  "about": "About",
+  "developer": "Developer",
+  "languageSelection": "Language Selection",
+  "viewCode": "View Code",
+  "absences": "Absences",
+  "settings": "Settings",
+  "member": "Member",
+  "admitter": "Admitter",
+  "note": "Note",
+  "id": "ID",
+  "date": "Date",
+  "period": "Period",
+  "type": "Type",
+  "status": "Status",
+  "selectALanguage": "Select a language"
+}

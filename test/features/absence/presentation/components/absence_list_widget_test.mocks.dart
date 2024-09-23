@@ -74,6 +74,7 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
     String? type,
     DateTime? date,
     bool? reset = false,
+    bool? persist = false,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -85,6 +86,7 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
             #type: type,
             #date: date,
             #reset: reset,
+            #persist: persist,
           },
         ),
         returnValue: _i3.Future<void>.value(),

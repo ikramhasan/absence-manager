@@ -1,0 +1,30 @@
+{
+  "@@locale": "de",
+  "language": "Deutsch",
+  "@language": {
+    "description": "The current language"
+  },
+  "appName": "Abwesenheitsmanager",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "hapticFeedback": "Haptisches Feedback",
+  "selectHapticFeedbackStrength": "Wählen Sie die Stärke des haptischen Feedbacks",
+  "preferences": "Einstellungen",
+  "darkMode": "Dunkelmodus",
+  "about": "Über",
+  "developer": "Entwickler",
+  "languageSelection": "Sprachauswahl",
+  "viewCode": "Code anzeigen",
+  "absences": "Abwesenheiten",
+  "settings": "Einstellungen",
+  "member": "Mitglied",
+  "admitter": "Zulasser",
+  "note": "Notiz",
+  "id": "ID",
+  "date": "Datum",
+  "period": "Zeitraum",
+  "type": "Typ",
+  "status": "Status",
+  "selectALanguage": "Wählen Sie eine Sprache"
+}

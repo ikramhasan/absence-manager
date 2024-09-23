@@ -1,4 +1,5 @@
 import 'package:absence_manager/features/core/infrastructure/string_extensions.dart';
+import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays an absence note.
@@ -28,8 +29,12 @@ class AbsenceNoteWidget extends StatelessWidget {
               const SizedBox(height: 16),
               Text.rich(
                 TextSpan(
-                  text: '${author == NoteAuthor.member ? 'Member' : 'Admitter'}'
-                      ' Note: ',
+                  text: '${author == NoteAuthor.member
+                          //
+                          ? context.l10n.member
+                          //
+                          : context.l10n.admitter}'
+                      ' ${context.l10n.note}: ',
                   children: [
                     TextSpan(
                       text: note,

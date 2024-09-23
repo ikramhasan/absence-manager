@@ -3,6 +3,8 @@ import 'package:absence_manager/features/absence/presentation/components/absence
 import 'package:absence_manager/features/absence/presentation/components/absence_table_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/core/assets/resources.dart';
+import 'package:absence_manager/features/l10n/l10n.dart';
+import 'package:absence_manager/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,12 +23,12 @@ class _HomePageState extends State<HomePage> {
 
   final smallPages = [
     const AbsenceListWidget(),
-    const Center(child: Text('Settings')),
+    const SettingsPage(),
   ];
 
   final largePages = [
     const AbsenceTableWidget(),
-    const Center(child: Text('Settings')),
+    const SettingsPage(),
   ];
 
   @override
@@ -50,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       },
       appBar: AppBar(
         centerTitle: false,
-        title: const Text('Absence Manager'),
+        title: Text(context.l10n.appName),
         actions: [
           if (width <= 700)
             const Row(
@@ -77,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             height: 20,
             width: 20,
           ),
-          label: 'Absences',
+          label: context.l10n.absences,
         ),
         NavigationDestination(
           icon: SvgPicture.asset(
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             height: 20,
             width: 20,
           ),
-          label: 'Settings',
+          label: context.l10n.settings,
         ),
       ],
       

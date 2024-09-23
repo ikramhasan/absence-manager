@@ -1,4 +1,6 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
+import 'package:absence_manager/features/core/infrastructure/app_haptic_feedback.dart';
+import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +14,8 @@ class AbsenceDateFilterWidget extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () async {
+        AppHapticFeedback(context).provide();
+
         final selectedDate = await showDatePicker(
           context: context,
           firstDate: DateTime(2021),
@@ -29,12 +33,12 @@ class AbsenceDateFilterWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: const Color(0xFFEAEAEA)),
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.calendar_month_rounded),
-            SizedBox(width: 8),
-            Text('Date'),
+            const Icon(Icons.calendar_month_rounded),
+            const SizedBox(width: 8),
+            Text(context.l10n.date),
           ],
         ),
       ),
