@@ -5,11 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:absence_manager/features/absence/domain/absence.dart' as _i6;
+import 'package:absence_manager/features/absence/domain/absence.dart' as _i8;
 import 'package:absence_manager/features/absence/domain/i_absence_repository.dart'
     as _i2;
+import 'package:absence_manager/features/absence/domain/paginated_absence_response.dart'
+    as _i6;
 import 'package:absence_manager/features/core/domain/failure.dart' as _i5;
-import 'package:absence_manager/features/core/domain/user.dart' as _i8;
+import 'package:absence_manager/features/core/domain/user.dart' as _i9;
 import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
@@ -37,38 +39,59 @@ class MockIAbsenceRepository extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, List<_i6.Absence>>>
-      fetchAbsencesWithMembers() => (super.noSuchMethod(
+  _i3.Future<_i4.Either<_i5.Failure, _i6.PaginatedAbsenceResponse>>
+      fetchAbsencesWithMembers({
+    int? page = 1,
+    int? limit = 10,
+    String? type,
+    DateTime? date,
+  }) =>
+          (super.noSuchMethod(
             Invocation.method(
               #fetchAbsencesWithMembers,
               [],
+              {
+                #page: page,
+                #limit: limit,
+                #type: type,
+                #date: date,
+              },
             ),
-            returnValue:
-                _i3.Future<_i4.Either<_i5.Failure, List<_i6.Absence>>>.value(
-                    _i7.dummyValue<_i4.Either<_i5.Failure, List<_i6.Absence>>>(
+            returnValue: _i3.Future<
+                    _i4
+                    .Either<_i5.Failure, _i6.PaginatedAbsenceResponse>>.value(
+                _i7.dummyValue<
+                    _i4.Either<_i5.Failure, _i6.PaginatedAbsenceResponse>>(
               this,
               Invocation.method(
                 #fetchAbsencesWithMembers,
                 [],
+                {
+                  #page: page,
+                  #limit: limit,
+                  #type: type,
+                  #date: date,
+                },
               ),
             )),
-          ) as _i3.Future<_i4.Either<_i5.Failure, List<_i6.Absence>>>);
+          ) as _i3
+              .Future<_i4.Either<_i5.Failure, _i6.PaginatedAbsenceResponse>>);
 
   @override
-  _i3.Future<List<_i6.Absence>> readAbsences() => (super.noSuchMethod(
+  _i3.Future<List<_i8.Absence>> readAbsences() => (super.noSuchMethod(
         Invocation.method(
           #readAbsences,
           [],
         ),
-        returnValue: _i3.Future<List<_i6.Absence>>.value(<_i6.Absence>[]),
-      ) as _i3.Future<List<_i6.Absence>>);
+        returnValue: _i3.Future<List<_i8.Absence>>.value(<_i8.Absence>[]),
+      ) as _i3.Future<List<_i8.Absence>>);
 
   @override
-  _i3.Future<List<_i8.User>> readUsers() => (super.noSuchMethod(
+  _i3.Future<List<_i9.User>> readUsers() => (super.noSuchMethod(
         Invocation.method(
           #readUsers,
           [],
         ),
-        returnValue: _i3.Future<List<_i8.User>>.value(<_i8.User>[]),
-      ) as _i3.Future<List<_i8.User>>);
+        returnValue: _i3.Future<List<_i9.User>>.value(<_i9.User>[]),
+      ) as _i3.Future<List<_i9.User>>);
 }

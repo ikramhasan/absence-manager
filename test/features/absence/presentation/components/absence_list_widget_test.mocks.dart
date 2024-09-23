@@ -68,14 +68,54 @@ class MockAbsenceCubit extends _i1.Mock implements _i2.AbsenceCubit {
       ) as bool);
 
   @override
-  _i3.Future<void> fetchAbsencesWithMembers() => (super.noSuchMethod(
+  _i3.Future<void> fetchAbsencesWithMembers({
+    int? page = 1,
+    int? limit = 10,
+    String? type,
+    DateTime? date,
+    bool? reset = false,
+  }) =>
+      (super.noSuchMethod(
         Invocation.method(
           #fetchAbsencesWithMembers,
           [],
+          {
+            #page: page,
+            #limit: limit,
+            #type: type,
+            #date: date,
+            #reset: reset,
+          },
         ),
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+
+  @override
+  void loadMoreAbsences() => super.noSuchMethod(
+        Invocation.method(
+          #loadMoreAbsences,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void filterAbsences({
+    String? type,
+    DateTime? date,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #filterAbsences,
+          [],
+          {
+            #type: type,
+            #date: date,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void emit(_i2.AbsenceState? state) => super.noSuchMethod(
@@ -145,7 +185,12 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
   @override
   TResult when<TResult extends Object?>({
     required TResult Function()? loading,
-    required TResult Function(List<_i5.Absence>)? loaded,
+    required TResult Function(
+      List<_i5.Absence>,
+      int,
+      int,
+      bool,
+    )? loaded,
     required TResult Function(_i6.Failure)? error,
   }) =>
       (super.noSuchMethod(
@@ -187,7 +232,12 @@ class MockAbsenceState extends _i1.Mock implements _i2.AbsenceState {
   @override
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<_i5.Absence>)? loaded,
+    TResult Function(
+      List<_i5.Absence>,
+      int,
+      int,
+      bool,
+    )? loaded,
     TResult Function(_i6.Failure)? error,
     required TResult Function()? orElse,
   }) =>

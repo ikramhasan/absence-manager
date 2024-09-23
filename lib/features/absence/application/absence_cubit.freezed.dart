@@ -19,21 +19,27 @@ mixin _$AbsenceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences) loaded,
+    required TResult Function(List<Absence> absences, int currentPage,
+            int totalPages, bool hasMore)
+        loaded,
     required TResult Function(Failure failure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences)? loaded,
+    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult? Function(Failure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences)? loaded,
+    TResult Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +131,9 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences) loaded,
+    required TResult Function(List<Absence> absences, int currentPage,
+            int totalPages, bool hasMore)
+        loaded,
     required TResult Function(Failure failure) error,
   }) {
     return loading();
@@ -135,7 +143,9 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences)? loaded,
+    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult? Function(Failure failure)? error,
   }) {
     return loading?.call();
@@ -145,7 +155,9 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences)? loaded,
+    TResult Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -200,7 +212,8 @@ abstract class _$$AbsenceLoadedImplCopyWith<$Res> {
           _$AbsenceLoadedImpl value, $Res Function(_$AbsenceLoadedImpl) then) =
       __$$AbsenceLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Absence> absences});
+  $Res call(
+      {List<Absence> absences, int currentPage, int totalPages, bool hasMore});
 }
 
 /// @nodoc
@@ -217,12 +230,27 @@ class __$$AbsenceLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? absences = null,
+    Object? currentPage = null,
+    Object? totalPages = null,
+    Object? hasMore = null,
   }) {
     return _then(_$AbsenceLoadedImpl(
-      null == absences
+      absences: null == absences
           ? _value._absences
           : absences // ignore: cast_nullable_to_non_nullable
               as List<Absence>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasMore: null == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -230,7 +258,11 @@ class __$$AbsenceLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AbsenceLoadedImpl implements AbsenceLoaded {
-  const _$AbsenceLoadedImpl(final List<Absence> absences)
+  const _$AbsenceLoadedImpl(
+      {required final List<Absence> absences,
+      required this.currentPage,
+      required this.totalPages,
+      required this.hasMore})
       : _absences = absences;
 
   final List<Absence> _absences;
@@ -242,8 +274,15 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
   }
 
   @override
+  final int currentPage;
+  @override
+  final int totalPages;
+  @override
+  final bool hasMore;
+
+  @override
   String toString() {
-    return 'AbsenceState.loaded(absences: $absences)';
+    return 'AbsenceState.loaded(absences: $absences, currentPage: $currentPage, totalPages: $totalPages, hasMore: $hasMore)';
   }
 
   @override
@@ -251,12 +290,21 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AbsenceLoadedImpl &&
-            const DeepCollectionEquality().equals(other._absences, _absences));
+            const DeepCollectionEquality().equals(other._absences, _absences) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_absences));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_absences),
+      currentPage,
+      totalPages,
+      hasMore);
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
@@ -270,32 +318,38 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences) loaded,
+    required TResult Function(List<Absence> absences, int currentPage,
+            int totalPages, bool hasMore)
+        loaded,
     required TResult Function(Failure failure) error,
   }) {
-    return loaded(absences);
+    return loaded(absences, currentPage, totalPages, hasMore);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences)? loaded,
+    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult? Function(Failure failure)? error,
   }) {
-    return loaded?.call(absences);
+    return loaded?.call(absences, currentPage, totalPages, hasMore);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences)? loaded,
+    TResult Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(absences);
+      return loaded(absences, currentPage, totalPages, hasMore);
     }
     return orElse();
   }
@@ -336,10 +390,16 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
 }
 
 abstract class AbsenceLoaded implements AbsenceState {
-  const factory AbsenceLoaded(final List<Absence> absences) =
-      _$AbsenceLoadedImpl;
+  const factory AbsenceLoaded(
+      {required final List<Absence> absences,
+      required final int currentPage,
+      required final int totalPages,
+      required final bool hasMore}) = _$AbsenceLoadedImpl;
 
   List<Absence> get absences;
+  int get currentPage;
+  int get totalPages;
+  bool get hasMore;
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
@@ -429,7 +489,9 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences) loaded,
+    required TResult Function(List<Absence> absences, int currentPage,
+            int totalPages, bool hasMore)
+        loaded,
     required TResult Function(Failure failure) error,
   }) {
     return error(failure);
@@ -439,7 +501,9 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences)? loaded,
+    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult? Function(Failure failure)? error,
   }) {
     return error?.call(failure);
@@ -449,7 +513,9 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences)? loaded,
+    TResult Function(List<Absence> absences, int currentPage, int totalPages,
+            bool hasMore)?
+        loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {

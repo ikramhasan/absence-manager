@@ -75,7 +75,14 @@ void main() {
         type: Type.vacation,
       ),
     ];
-    when(mockAbsenceCubit.state).thenReturn(AbsenceState.loaded(absences));
+    when(mockAbsenceCubit.state).thenReturn(
+      AbsenceState.loaded(
+        absences: absences,
+        currentPage: 1,
+        totalPages: 1,
+        hasMore: false,
+      ),
+    );
 
     await tester.pumpWidget(
       MaterialApp(

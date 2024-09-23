@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:absence_manager/features/absence/domain/absence.dart';
 import 'package:absence_manager/features/absence/domain/i_absence_repository.dart';
+import 'package:absence_manager/features/absence/domain/paginated_absence_response.dart';
 import 'package:absence_manager/features/core/domain/api_response.dart';
 import 'package:absence_manager/features/core/domain/exceptions.dart';
 import 'package:absence_manager/features/core/domain/failure.dart';
@@ -17,25 +18,52 @@ class LocalAbsenceRepository implements IAbsenceRepository {
   final AssetBundle assetBundle;
 
   @override
-  Future<Either<Failure, List<Absence>>> fetchAbsencesWithMembers() async {
+  Future<Either<Failure, PaginatedAbsenceResponse>> fetchAbsencesWithMembers({
+    int page = 1,
+    int limit = 10,
+    String? type,
+    DateTime? date,
+  }) async {
     try {
-      final absenceResponse = await readAbsences();
-
+      final allAbsences = await readAbsences();
       final userResponse = await readUsers();
 
+      // Apply filters
+      var filteredAbsences = allAbsences.where((absence) {
+        final typeMatch = type == null || absence.type.name == type;
+        final dateMatch = date == null ||
+            (absence.startDate.compareTo(date) <= 0 &&
+                absence.endDate.compareTo(date) >= 0);
+        return typeMatch && dateMatch;
+      }).toList();
+
+      // Apply pagination
+      final totalAbsences = filteredAbsences.length;
+      final startIndex = (page - 1) * limit;
+      var endIndex = startIndex + limit;
+      if (endIndex > totalAbsences) endIndex = totalAbsences;
+
+      filteredAbsences = filteredAbsences.sublist(startIndex, endIndex);
+
       // Map users to absences
-      final absences = absenceResponse.map((absence) {
+      final absences = filteredAbsences.map((absence) {
         final user = userResponse.firstWhere(
           (user) => user.userId == absence.userId,
           orElse: () {
             throw UserNotFoundException();
           },
         );
-
         return absence.copyWith(user: user);
       }).toList();
 
-      return right(absences);
+      return right(
+        PaginatedAbsenceResponse(
+          absences: absences,
+          totalAbsences: totalAbsences,
+          currentPage: page,
+          totalPages: (totalAbsences / limit).ceil(),
+        ),
+      );
     } on UserNotFoundException {
       return left(const Failure(code: 404, message: 'User not found.'));
     } catch (e) {

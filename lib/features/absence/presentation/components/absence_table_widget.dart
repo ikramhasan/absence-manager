@@ -3,6 +3,7 @@ import 'package:absence_manager/features/absence/presentation/components/absence
 import 'package:absence_manager/features/absence/presentation/components/absence_type_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/date_range_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/member_row_widget.dart';
+import 'package:absence_manager/features/absence/presentation/components/data_table/pagination_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/period_row_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,95 +15,118 @@ class AbsenceTableWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<AbsenceCubit>().fetchAbsencesWithMembers();
+    
     return BlocBuilder<AbsenceCubit, AbsenceState>(
       builder: (context, state) {
         return state.map(
           loading: (_) => const Center(child: CircularProgressIndicator()),
           loaded: (state) {
-            return InteractiveViewer(
-              constrained: false,
-              child: DataTable(
-                headingRowColor: WidgetStateProperty.resolveWith(
-                  (states) => const Color(0xFFEAEAEA),
-                ),
-                headingTextStyle: const TextStyle(fontWeight: FontWeight.bold),
-                columns: const [
-                  DataColumn(label: Text('ID'), numeric: true),
-                  DataColumn(label: Text('Member')),
-                  DataColumn(label: Text('Date')),
-                  DataColumn(label: Text('Period')),
-                  DataColumn(label: Text('Type')),
-                  DataColumn(label: Text('Status')),
-                  DataColumn(label: Text('Member Note')),
-                  DataColumn(label: Text('Admitter Note')),
-                ],
-                rows: state.absences
-                    .map(
-                      (absence) => DataRow(
-                        cells: [
-                          DataCell(
-                            Text(
-                              absence.id.toString(),
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          DataCell(
-                            MemberRowWidget(
-                              imageUrl:
-                                  '${absence.user!.image}'
-                                  '?random=${absence.user!.name}',
-                              userName: absence.user!.name,
-                            ),
-                          ),
-                          DataCell(
-                            DateRangeRowWidget(
-                              startDate: absence.startDate,
-                              endDate: absence.endDate,
-                            ),
-                          ),
-                          DataCell(
-                            PeriodRowWidget(
-                              startDate: absence.startDate,
-                              endDate: absence.endDate,
-                            ),
-                          ),
-                          DataCell(
-                            AbsenceTypeWidget(type: absence.type.name),
-                          ),
-                          DataCell(
-                            AbsenceStatusWidget(
-                              confirmedAt: absence.confirmedAt,
-                              rejectedAt: absence.rejectedAt,
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              absence.memberNote,
-                              style: const TextStyle(
-                                letterSpacing: -0.5,
-                                fontSize: 16,
-                                color: Color(0xFF5A5A5A),
-                              ),
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              absence.admitterNote,
-                              style: const TextStyle(
-                                letterSpacing: -0.5,
-                                fontSize: 16,
-                                color: Color(0xFF5A5A5A),
-                              ),
-                            ),
-                          ),
-                        ],
+            return Column(
+              children: [
+                const Row(
+                  children: [
+                    Text(
+                      'Absences',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
-                    )
-                    .toList(),
-              ),
+                    ),
+                    Spacer(),
+                    PaginationWidget(),
+                    SizedBox(width: 16),
+                  ],
+                ),
+                Expanded(
+                  child: InteractiveViewer(
+                    constrained: false,
+                    child: DataTable(
+                      headingRowColor: WidgetStateProperty.resolveWith(
+                        (states) => const Color(0xFFEAEAEA),
+                      ),
+                      headingTextStyle:
+                          const TextStyle(fontWeight: FontWeight.bold),
+                      columns: const [
+                        DataColumn(label: Text('ID'), numeric: true),
+                        DataColumn(label: Text('Member')),
+                        DataColumn(label: Text('Date')),
+                        DataColumn(label: Text('Period')),
+                        DataColumn(label: Text('Type')),
+                        DataColumn(label: Text('Status')),
+                        DataColumn(label: Text('Member Note')),
+                        DataColumn(label: Text('Admitter Note')),
+                      ],
+                      rows: state.absences
+                          .map(
+                            (absence) => DataRow(
+                              cells: [
+                                DataCell(
+                                  Text(
+                                    absence.id.toString(),
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                DataCell(
+                                  MemberRowWidget(
+                                    imageUrl: '${absence.user!.image}'
+                                        '?random=${absence.user!.name}',
+                                    userName: absence.user!.name,
+                                  ),
+                                ),
+                                DataCell(
+                                  DateRangeRowWidget(
+                                    startDate: absence.startDate,
+                                    endDate: absence.endDate,
+                                  ),
+                                ),
+                                DataCell(
+                                  PeriodRowWidget(
+                                    startDate: absence.startDate,
+                                    endDate: absence.endDate,
+                                  ),
+                                ),
+                                DataCell(
+                                  AbsenceTypeWidget(type: absence.type.name),
+                                ),
+                                DataCell(
+                                  AbsenceStatusWidget(
+                                    confirmedAt: absence.confirmedAt,
+                                    rejectedAt: absence.rejectedAt,
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    absence.memberNote,
+                                    style: const TextStyle(
+                                      letterSpacing: -0.5,
+                                      fontSize: 16,
+                                      color: Color(0xFF5A5A5A),
+                                    ),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    absence.admitterNote,
+                                    style: const TextStyle(
+                                      letterSpacing: -0.5,
+                                      fontSize: 16,
+                                      color: Color(0xFF5A5A5A),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
+                          
+                    ),
+                  ),
+                ),
+              ],
             );
           },
           error: (state) {

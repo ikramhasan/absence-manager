@@ -64,9 +64,9 @@ void main() {
       expect(result.isRight(), true);
       result.fold(
         (failure) => fail('Expected right but got left'),
-        (absences) {
-          expect(absences.length, 1);
-          expect(absences.first.user?.name, 'John');
+        (paginatedAbsence) {
+          expect(paginatedAbsence.absences.length, 1);
+          expect(paginatedAbsence.absences.first.user?.name, 'John');
         },
       );
     });

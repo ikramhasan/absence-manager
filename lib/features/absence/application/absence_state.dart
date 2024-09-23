@@ -8,7 +8,12 @@ class AbsenceState with _$AbsenceState {
   const factory AbsenceState.loading() = AbsenceLoading;
 
   /// The loaded state of the AbsenceCubit.
-  const factory AbsenceState.loaded(List<Absence> absences) = AbsenceLoaded;
+  const factory AbsenceState.loaded({
+    required List<Absence> absences,
+    required int currentPage,
+    required int totalPages,
+    required bool hasMore,
+  }) = AbsenceLoaded;
 
   /// The error state of the AbsenceCubit.
   const factory AbsenceState.error(Failure failure) = AbsenceError;

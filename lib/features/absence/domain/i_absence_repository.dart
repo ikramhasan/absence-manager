@@ -1,6 +1,7 @@
 // ignore_for_file: one_member_abstracts
 
 import 'package:absence_manager/features/absence/domain/absence.dart';
+import 'package:absence_manager/features/absence/domain/paginated_absence_response.dart';
 import 'package:absence_manager/features/core/domain/failure.dart';
 import 'package:absence_manager/features/core/domain/user.dart';
 import 'package:fpdart/fpdart.dart';
@@ -11,7 +12,12 @@ abstract class IAbsenceRepository {
   ///
   /// Returns a [List] of [Absence]s if successful.
   /// Returns a [Failure] otherwise.
-  Future<Either<Failure, List<Absence>>> fetchAbsencesWithMembers();
+  Future<Either<Failure, PaginatedAbsenceResponse>> fetchAbsencesWithMembers({
+    int page = 1,
+    int limit = 10,
+    String? type,
+    DateTime? date,
+  });
 
   /// Reads the absences from the local data.
   Future<List<Absence>> readAbsences();

@@ -1,6 +1,7 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
 import 'package:absence_manager/features/absence/domain/absence.dart';
 import 'package:absence_manager/features/absence/domain/i_absence_repository.dart';
+import 'package:absence_manager/features/absence/domain/paginated_absence_response.dart';
 import 'package:absence_manager/features/core/domain/failure.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,13 +40,18 @@ void main() {
     'emits [loading, loaded] when fetchAbsencesWithMembers is successful',
     build: () {
       when(mockAbsenceRepository.fetchAbsencesWithMembers())
-          .thenAnswer((_) async => right(<Absence>[]));
+          .thenAnswer((_) async => right(PaginatedAbsenceResponse.empty()));
       return absenceCubit;
     },
     act: (cubit) => cubit.fetchAbsencesWithMembers(),
     expect: () => [
       const AbsenceState.loading(),
-      const AbsenceState.loaded(<Absence>[]),
+      AbsenceState.loaded(
+        currentPage: PaginatedAbsenceResponse.empty().currentPage,
+        totalPages: PaginatedAbsenceResponse.empty().totalPages,
+        absences: PaginatedAbsenceResponse.empty().absences,
+        hasMore: false,
+      ),
     ],
   );
 
