@@ -4,85 +4,111 @@
 
 # 🚀 Crewmeister coding challenge - Frontend (Flutter)
 
-Hello and thanks in participating in the crewmeister coding challenge. This coding exercise will help us get a better feeling about your coding process.
+This is the submission for the Crewmeister coding challenge - Frontend (Flutter)
 
-If you have any questions, we're happy to help you. Reach the devs at challenge@crewmeister.com.
+Submitted by [Ikramul Hasan](https://github.com/ikramhasan)
 
-## Context
+## How to run the project
 
-At Crewmeister we like to work closely with our clients, listening to their demands and developing solutions for their problems. One of the most requested features is a way for company owners to manage sickness and vacations of employees.
+The easiest way to test the project is by navigating to the deployed site.
 
-We decided to implement this feature for our clients and we are calling it the Absence Manager.
+### [LIVE DEMO: https://ikramhasan.github.io/absence-manager](https://ikramhasan.github.io/absence-manager)
+
+
+To run it manually in you local machine, follow the steps below:
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/ikramhasan/absence-manager.git
+```
+
+2. Navigate to the project directory
+
+```bash
+cd absence-manager
+```
+
+3. Install the dependencies
+
+```bash
+flutter pub get
+```
+
+4. Run the project
+
+```bash
+flutter run
+```
+
 
 ## Product Requirements
 
-- [ ] I want to see a list of absences including the names of the employees.
-- [ ] I want to see the first 10 absences, with the ability to paginate.
+- [x] I want to see a list of absences including the names of the employees.
+- [x] I want to see the first 10 absences, with the ability to paginate.
 - [ ] I want to see a total number of absences.
-- [ ] For each absence I want to see:
-  - [ ] Member name
-  - [ ] Type of absence
-  - [ ] Period
-  - [ ] Member note (when available)
-  - [ ] Status (can be 'Requested', 'Confirmed' or 'Rejected')
-  - [ ] Admitter note (when available)
-- [ ] I want to filter absences by type.
-- [ ] I want to filter absences by date.
-- [ ] I want to see a loading state until the list is available.
-- [ ] I want to see an error state if the list is unavailable.
+- [x] For each absence I want to see:
+  - [x] Member name
+  - [x] Type of absence
+  - [x] Period
+  - [x] Member note (when available)
+  - [x] Status (can be 'Requested', 'Confirmed' or 'Rejected')
+  - [x] Admitter note (when available)
+- [x] I want to filter absences by type.
+- [x] I want to filter absences by date.
+- [x] I want to see a loading state until the list is available.
+- [x] I want to see an error state if the list is unavailable.
 - [ ] I want to see an empty state if there are no results.
 - [ ] (Bonus) I can generate an iCal file and import it into outlook.
 
-## Your Mission
+## Additional Features
 
-Create the Flutter application that satisfies all must-have requirements above, plus any nice-to-have requirements you wish to include.
+- [x] Dark Mode, and Light Mode support
+- [x] Mobile and desktop responsive design
+- [x] Settings page
+- [x] Localization support (English and German)
+- [x] Haptic feedback 
 
-We provided a couple of JSON files with the mock data necessary to implement the screens, you can use the files straight into the app using the mock methods provided in this repository or create a small separate API (bonus), it's your choice.
+## Technical Stuff
 
-We encourage you to use your favorite tools and packages to build a solid Flutter application.
 
-Optional: build the project and deploy (ie make it available as a static project) on Github Pages, otherwise please provide detailed instructions on how to start the project locally.
+### Code Coverage
 
-## Tech Requirements
+Every single line of code has been tested with unit tests and widget tests. Here's the test coverage report:
 
-- Flutter
-- Tests: flutter_test library
-- Code Linter
-- Using a state management approach (BLoC, Redux etc) is a plus.
+<img src="docs/code-coverage.png" />
 
-## Instructions
+You can verify the test coverage by running the following command:
 
-- Clone this repo.
-- The challenge is on!
-- Build a performant, clean and well-structured solution.
-- Commit early and often. We want to be able to check your progress.
-- Include a README with instructions on how to run your project.
-- Please complete your working solution within 7 days of receiving this challenge.
-- Whenever you're done please deliver the project following the instructions below.
+```bash
+flutter test --coverage
+```
 
-We'll review your submission as soon as possible. Key-points we're going to review:
+and navigating to the generated `/coverage` directory.
 
-- Naming (files, functions, widgets, ...).
-- Tests.
-- Code structure, readability, performance and consistency.
-- function and widget lengths.
-- Commits + commit messages.
-- Clean code.
-- Good documentation and README instructions.
+### Pagination
 
-An essential part of the challenge is also coming up with your own solutions and making reasonable assumptions about the implementation of the acceptance criteria.
+There are two types of pagination implemented in the project:
 
-## Project delivery instructions
+1. **Infinite Scroll Pagination**: The absence list is paginated with infinite scroll. When the user reaches the end of the list, the next page is loaded automatically. This pagination will show up in mobile devices.
+  
+2. **Manual Pagination**: The user can manually change the page number from the settings page. This pagination will show up in desktop devices.
 
-To submit the project for evaluation please follow the steps below:
+### Linting
 
-- Create a **public** repo on your personal Github.
-- Add the new repo as a _remote_ on your local repo.
-- Push your code to your new remote repo.
-- Send us the link! The e-mail is: challenge@crewmeister.com
+The codebase goes through a very strict linting process. You can find all the custom linting rules in the [analysis_options.yaml](analysis_options.yaml) file.
 
-## That's it!
 
-Happy coding!
+### Documentation
 
-<img src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" data-canonical-src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" width="150" height="150" />
+All the public functions, classes, variables, and enums are documented with Dartdoc. 
+
+### CI/CD
+
+The project is set up with Github Actions for CI/CD. The workflow is defined in the [.github/workflows/gh-pages.yaml](.github/workflows/gh-pages.yaml) file.
+
+## Tech Stack
+
+- Framework: [Flutter](https://flutter.dev/)
+- State Management: [Flutter Bloc](https://bloclibrary.dev/)
+- Persistance: [Hive](https://pub.dev/packages/hive)
