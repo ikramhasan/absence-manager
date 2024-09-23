@@ -1,4 +1,6 @@
+import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// A widget that displays the status of an absence request.
 class AbsenceStatusWidget extends StatelessWidget {
@@ -13,35 +15,65 @@ class AbsenceStatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 2,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: rejectedAt != null
-            ? const Color(0xFFFFE5E5)
-            : confirmedAt != null
-                ? const Color(0xFFECFCE5)
-                : const Color(0xFFFFEFD7),
-      ),
-      child: Text(
-        rejectedAt != null
-            ? 'Rejected'
-            : confirmedAt != null
-                ? 'Confirmed'
-                : 'Requested',
-        style: TextStyle(
-          color: rejectedAt != null
-              ? const Color(0xFFD3180C)
-              : confirmedAt != null
-                  ? const Color(0xFF198155)
-                  : const Color(0xFFA05E03),
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-        ),
-      ),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      buildWhen: (previous, current) =>
+          previous.settings.isDarkTheme != current.settings.isDarkTheme,
+      builder: (context, state) {
+        final rejectedContainerColor = state.settings.isDarkTheme
+            ? const Color(0xFF780101).withOpacity(0.54)
+            : const Color(0xFFFFE5E5);
+
+        final confirmedContainerColor = state.settings.isDarkTheme
+            ? const Color(0xFF0B654A).withOpacity(0.38)
+            : const Color(0xFFECFCE5);
+
+        final requestedContainerColor = state.settings.isDarkTheme
+            ? const Color(0xFF5F552B).withOpacity(0.67)
+            : const Color(0xFFFFEFD7);
+
+        final rejectedTextColor = state.settings.isDarkTheme
+            ? const Color(0xFFFF0000)
+            : const Color(0xFFD3180C);
+
+        final confirmedTextColor = state.settings.isDarkTheme
+            ? const Color(0xFF55FFE1)
+            : const Color(0xFF198155);
+
+        final requestedTextColor = state.settings.isDarkTheme
+            ? const Color(0xFFFFE661)
+            : const Color(0xFFA05E03);
+
+        return Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 2,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: rejectedAt != null
+                ? rejectedContainerColor
+                : confirmedAt != null
+                    ? confirmedContainerColor
+                    : requestedContainerColor,
+          ),
+          child: Text(
+            rejectedAt != null
+                ? 'Rejected'
+                : confirmedAt != null
+                    ? 'Confirmed'
+                    : 'Requested',
+            style: TextStyle(
+              color: rejectedAt != null
+                  ? rejectedTextColor
+                  : confirmedAt != null
+                      ? confirmedTextColor
+                      : requestedTextColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+            ),
+          ),
+        );
+      },
     );
   }
 }

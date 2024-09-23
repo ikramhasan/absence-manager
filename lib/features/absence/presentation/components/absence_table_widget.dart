@@ -9,6 +9,7 @@ import 'package:absence_manager/features/absence/presentation/components/data_ta
 import 'package:absence_manager/features/absence/presentation/components/data_table/period_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/reload_widget.dart';
 import 'package:absence_manager/features/l10n/l10n.dart';
+import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +47,15 @@ class AbsenceTableWidget extends StatelessWidget {
                     constrained: false,
                     child: DataTable(
                       headingRowColor: WidgetStateProperty.resolveWith(
-                        (states) => const Color(0xFFEAEAEA),
+                        (states) => Color(
+                          context
+                                  .watch<SettingsCubit>()
+                                  .state
+                                  .settings
+                                  .isDarkTheme
+                              ? 0xFF4D4C4C
+                              : 0xFFEAEAEA,
+                        ),
                       ),
                       headingTextStyle:
                           const TextStyle(fontWeight: FontWeight.bold),
@@ -110,30 +119,51 @@ class AbsenceTableWidget extends StatelessWidget {
                                   ),
                                 ),
                                 DataCell(
-                                  Text(
-                                    absence.memberNote,
-                                    style: const TextStyle(
-                                      letterSpacing: -0.5,
-                                      fontSize: 16,
-                                      color: Color(0xFF5A5A5A),
-                                    ),
+                                  BlocBuilder<SettingsCubit, SettingsState>(
+                                    buildWhen: (previous, current) =>
+                                        previous.settings.isDarkTheme !=
+                                        current.settings.isDarkTheme,
+                                    builder: (context, state) {
+                                      return Text(
+                                        absence.memberNote,
+                                        style: TextStyle(
+                                          letterSpacing: -0.5,
+                                          fontSize: 16,
+                                          color: Color(
+                                            state.settings.isDarkTheme
+                                                ? 0xFFF0F0F0
+                                                : 0xFF5A5A5A,
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                                 DataCell(
-                                  Text(
-                                    absence.admitterNote,
-                                    style: const TextStyle(
-                                      letterSpacing: -0.5,
-                                      fontSize: 16,
-                                      color: Color(0xFF5A5A5A),
-                                    ),
+                                  BlocBuilder<SettingsCubit, SettingsState>(
+                                    buildWhen: (previous, current) =>
+                                        previous.settings.isDarkTheme !=
+                                        current.settings.isDarkTheme,
+                                    builder: (context, state) {
+                                      return Text(
+                                        absence.admitterNote,
+                                        style: TextStyle(
+                                          letterSpacing: -0.5,
+                                          fontSize: 16,
+                                          color: Color(
+                                            state.settings.isDarkTheme
+                                                ? 0xFFF0F0F0
+                                                : 0xFF5A5A5A,
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
                             ),
                           )
                           .toList(),
-                          
                     ),
                   ),
                 ),

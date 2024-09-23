@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "language": "Deutsch",
+  "language": "German",
   "@language": {
     "description": "The current language"
   },

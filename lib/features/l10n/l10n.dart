@@ -39,5 +39,5 @@ class SupportedLanguage {
 /// All supported languages.
 final supportedLanguages = [
   const SupportedLanguage(locale: Locale('en'), languageName: 'English'),
-  const SupportedLanguage(locale: Locale('de'), languageName: 'Deutsch'),
+  const SupportedLanguage(locale: Locale('de'), languageName: 'German'),
 ];
