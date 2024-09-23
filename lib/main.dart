@@ -8,11 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AbsenceManagerApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+/// A Flutter application that manages absences.
+class AbsenceManagerApp extends StatelessWidget {
+  /// Creates an [AbsenceManagerApp].
+  const AbsenceManagerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           RepositoryProvider.of<IAbsenceRepository>(context),
         )..fetchAbsencesWithMembers(),
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Absence Manager',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,

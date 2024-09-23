@@ -22,6 +22,10 @@ class AbsenceTableWidget extends StatelessWidget {
             return InteractiveViewer(
               constrained: false,
               child: DataTable(
+                headingRowColor: WidgetStateProperty.resolveWith(
+                  (states) => const Color(0xFFEAEAEA),
+                ),
+                headingTextStyle: const TextStyle(fontWeight: FontWeight.bold),
                 columns: const [
                   DataColumn(label: Text('ID'), numeric: true),
                   DataColumn(label: Text('Member')),
@@ -48,7 +52,8 @@ class AbsenceTableWidget extends StatelessWidget {
                           DataCell(
                             MemberRowWidget(
                               imageUrl:
-                                  '${absence.user!.image}?random=${absence.user!.name}',
+                                  '${absence.user!.image}'
+                                  '?random=${absence.user!.name}',
                               userName: absence.user!.name,
                             ),
                           ),

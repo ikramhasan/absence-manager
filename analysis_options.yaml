@@ -26,6 +26,7 @@ analyzer:
   exclude:
     - test/.test_coverage.dart
     - lib/generated_plugin_registrant.dart
+    - '**/*.g.dart'
 
 linter:
   rules:
