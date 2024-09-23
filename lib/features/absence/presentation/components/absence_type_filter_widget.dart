@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// A widget that displays a filter for absences.
-class AbsenceFilterWidget extends StatelessWidget {
-  /// Creates an [AbsenceFilterWidget].
-  const AbsenceFilterWidget({super.key});
+class AbsenceTypeFilterWidget extends StatelessWidget {
+  /// Creates an [AbsenceTypeFilterWidget].
+  const AbsenceTypeFilterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
