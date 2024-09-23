@@ -6,6 +6,7 @@ import 'package:absence_manager/features/core/domain/api_response.dart';
 import 'package:absence_manager/features/core/domain/exceptions.dart';
 import 'package:absence_manager/features/core/domain/failure.dart';
 import 'package:absence_manager/features/core/domain/user.dart';
+import 'package:absence_manager/features/core/infrastructure/date_extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -32,8 +33,7 @@ class LocalAbsenceRepository implements IAbsenceRepository {
       var filteredAbsences = allAbsences.where((absence) {
         final typeMatch = type == null || absence.type.name == type;
         final dateMatch = date == null ||
-            (absence.startDate.compareTo(date) <= 0 &&
-                absence.endDate.compareTo(date) >= 0);
+            date.isBetween(from: absence.startDate, to: absence.endDate);
         return typeMatch && dateMatch;
       }).toList();
 

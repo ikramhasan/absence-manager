@@ -17,8 +17,9 @@ void main() {
   late AbsenceCubit absenceCubit;
 
   setUpAll(() {
-    // Provide a dummy value for Either<Failure, List<Absence>>
-    provideDummy<Either<Failure, List<Absence>>>(right(<Absence>[]));
+    provideDummy<Either<Failure, PaginatedAbsenceResponse>>(
+      right(PaginatedAbsenceResponse.empty()),
+    );
   });
 
   setUp(() {
@@ -31,41 +32,165 @@ void main() {
   });
 
   const genericFailure = Failure(code: 101, message: 'Error');
+  final genericDate = DateTime(2021);
+
+  PaginatedAbsenceResponse createMockResponse({
+    int currentPage = 1,
+    int totalPages = 2,
+    int absencesCount = 10,
+  }) {
+    return PaginatedAbsenceResponse(
+      absences: List.generate(absencesCount, (_) => Absence.empty()),
+      currentPage: currentPage,
+      totalPages: totalPages,
+      totalAbsences: totalPages * absencesCount,
+    );
+  }
 
   test('initial state is AbsenceState.loading', () {
     expect(absenceCubit.state, const AbsenceState.loading());
   });
 
-  blocTest<AbsenceCubit, AbsenceState>(
-    'emits [loading, loaded] when fetchAbsencesWithMembers is successful',
-    build: () {
-      when(mockAbsenceRepository.fetchAbsencesWithMembers())
-          .thenAnswer((_) async => right(PaginatedAbsenceResponse.empty()));
-      return absenceCubit;
-    },
-    act: (cubit) => cubit.fetchAbsencesWithMembers(),
-    expect: () => [
-      const AbsenceState.loading(),
-      AbsenceState.loaded(
-        currentPage: PaginatedAbsenceResponse.empty().currentPage,
-        totalPages: PaginatedAbsenceResponse.empty().totalPages,
-        absences: PaginatedAbsenceResponse.empty().absences,
-        hasMore: false,
-      ),
-    ],
-  );
+  group('fetchAbsencesWithMembers', () {
+    blocTest<AbsenceCubit, AbsenceState>(
+      'emits [loading, loaded] when fetchAbsencesWithMembers is successful',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(),
+        ).thenAnswer((_) async => right(createMockResponse()));
+        return absenceCubit;
+      },
+      act: (cubit) => cubit.fetchAbsencesWithMembers(),
+      expect: () => [
+        const AbsenceState.loading(),
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.absences.length,
+            orElse: () => -1,
+          ),
+          'absences length',
+          10,
+        ),
+      ],
+    );
 
-  blocTest<AbsenceCubit, AbsenceState>(
-    'emits [loading, error] when fetchAbsencesWithMembers fails',
-    build: () {
-      when(mockAbsenceRepository.fetchAbsencesWithMembers())
-          .thenAnswer((_) async => left(genericFailure));
-      return absenceCubit;
-    },
-    act: (cubit) => cubit.fetchAbsencesWithMembers(),
-    expect: () => [
-      const AbsenceState.loading(),
-      const AbsenceState.error(genericFailure),
-    ],
-  );
+    blocTest<AbsenceCubit, AbsenceState>(
+      'emits [loading, error] when fetchAbsencesWithMembers fails',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(),
+        ).thenAnswer((_) async => left(genericFailure));
+        return absenceCubit;
+      },
+      act: (cubit) => cubit.fetchAbsencesWithMembers(),
+      expect: () => [
+        const AbsenceState.loading(),
+        const AbsenceState.error(genericFailure),
+      ],
+    );
+
+    blocTest<AbsenceCubit, AbsenceState>(
+      'does not emit new state when fetching page out of range',
+      build: () => absenceCubit,
+      act: (cubit) => cubit.fetchAbsencesWithMembers(page: 0),
+      expect: () => <dynamic>[],
+    );
+
+    blocTest<AbsenceCubit, AbsenceState>(
+      'resets state when reset is true',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(
+            type: 'vacation',
+            date: genericDate,
+          ),
+        ).thenAnswer((_) async => right(createMockResponse()));
+        return absenceCubit;
+      },
+      act: (cubit) => cubit.fetchAbsencesWithMembers(
+        reset: true,
+        type: 'vacation',
+        date: genericDate,
+      ),
+      expect: () => [
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.absences.length,
+            orElse: () => -1,
+          ),
+          'absences length',
+          10,
+        ),
+      ],
+    );
+  });
+
+  group('loadMoreAbsences', () {
+    blocTest<AbsenceCubit, AbsenceState>(
+      'loads more absences when there are more pages',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(),
+        ).thenAnswer((_) async => right(createMockResponse()));
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(
+            page: 2,
+          ),
+        ).thenAnswer((_) async => right(createMockResponse(currentPage: 2)));
+        return absenceCubit;
+      },
+      act: (cubit) async {
+        await cubit.fetchAbsencesWithMembers();
+        cubit.loadMoreAbsences();
+      },
+      expect: () => [
+        const AbsenceState.loading(),
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.absences.length,
+            orElse: () => -1,
+          ),
+          'absences length',
+          10,
+        ),
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.absences.length,
+            orElse: () => -1,
+          ),
+          'absences length',
+          20,
+        ),
+      ],
+    );
+  });
+
+  group('filterAbsences', () {
+    blocTest<AbsenceCubit, AbsenceState>(
+      'filters absences by type and date',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(
+            type: 'vacation',
+            date: anyNamed('date'),
+          ),
+        ).thenAnswer((_) async => right(createMockResponse(absencesCount: 5)));
+        return absenceCubit;
+      },
+      act: (cubit) => cubit.filterAbsences(
+        type: 'vacation',
+        date: genericDate,
+      ),
+      expect: () => [
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.absences.length,
+            orElse: () => -1,
+          ),
+          'absences length',
+          5,
+        ),
+      ],
+    );
+  });
 }

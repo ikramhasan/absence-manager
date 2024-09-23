@@ -45,10 +45,12 @@ class Absence with _$Absence {
   /// Creates an empty [Absence] instance.
   factory Absence.empty() => _Absence(
         admitterNote: '',
-        createdAt: DateTime.now(),
+        createdAt: DateTime(2021),
         crewId: 0,
-        startDate: DateTime.now(),
-        endDate: DateTime.now(),
+        startDate: DateTime(2021),
+        endDate: DateTime(2021),
+        confirmedAt: DateTime(2021),
+        rejectedAt: DateTime(2021),
         id: 0,
         memberNote: '',
         userId: 0,
@@ -56,11 +58,14 @@ class Absence with _$Absence {
       );
 }
 
+@JsonEnum()
 /// An enum representing the type of absence.
 enum Type {
+  @JsonValue('sickness')
   /// Sickness related absence.
   sickness,
 
+  @JsonValue('vacation')
   /// Vacation related absence.
   vacation
 }

@@ -149,5 +149,121 @@ void main() {
       expect(result.length, 1);
       expect(result.first.userId, 1);
     });
+
+    test('fetchAbsencesWithMembers filters by type', () async {
+      // Arrange
+      final absenceJsonWithDifferentType = jsonEncode({
+        'message': 'Success',
+        'payload': [
+          {
+            'id': 1,
+            'userId': 1,
+            'admitterNote': 'Note',
+            'createdAt': '2023-01-01T00:00:00.000Z',
+            'crewId': 1,
+            'startDate': '2023-01-01T00:00:00.000Z',
+            'endDate': '2023-01-01T00:00:00.000Z',
+            'type': 'vacation',
+            'memberNote': 'Note',
+          },
+        ],
+      });
+
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJsonWithDifferentType);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenAnswer((_) async => userJson);
+
+      // Act
+      final result =
+          await repository.fetchAbsencesWithMembers(type: 'vacation');
+
+      // Assert
+      expect(result.isRight(), true);
+      result.fold(
+        (failure) => fail('Expected right but got left'),
+        (paginatedAbsence) {
+          expect(paginatedAbsence.absences.length, 1);
+        },
+      );
+    });
+
+    test('fetchAbsencesWithMembers filters by date', () async {
+      // Arrange
+      final absenceJsonWithDifferentDate = jsonEncode({
+        'message': 'Success',
+        'payload': [
+          {
+            'id': 1,
+            'userId': 1,
+            'admitterNote': 'Note',
+            'createdAt': '2023-01-01T00:00:00.000Z',
+            'crewId': 1,
+            'startDate': '2023-01-01T00:00:00.000Z',
+            'endDate': '2023-01-01T00:00:00.000Z',
+            'type': 'sickness',
+            'memberNote': 'Note',
+          },
+        ],
+      });
+
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJsonWithDifferentDate);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenAnswer((_) async => userJson);
+
+      // Act
+      final result =
+          await repository.fetchAbsencesWithMembers(date: DateTime(2023));
+
+      // Assert
+      expect(result.isRight(), true);
+      result.fold(
+        (failure) => fail('Expected right but got left'),
+        (paginatedAbsence) {
+          expect(paginatedAbsence.absences.length, 0);
+        },
+      );
+    });
+
+    test('fetchAbsencesWithMembers filters by type and date', () async {
+      // Arrange
+      final absenceJsonWithMatchingTypeAndDate = jsonEncode({
+        'message': 'Success',
+        'payload': [
+          {
+            'id': 1,
+            'userId': 1,
+            'admitterNote': 'Note',
+            'createdAt': '2023-01-01T00:00:00.000Z',
+            'crewId': 1,
+            'startDate': '2023-01-01T00:00:00.000Z',
+            'endDate': '2023-01-01T00:00:00.000Z',
+            'type': 'sickness',
+            'memberNote': 'Note',
+          },
+        ],
+      });
+
+      when(rootBundle.loadString('lib/features/absence/data/absences.json'))
+          .thenAnswer((_) async => absenceJsonWithMatchingTypeAndDate);
+      when(rootBundle.loadString('lib/features/absence/data/members.json'))
+          .thenAnswer((_) async => userJson);
+
+      // Act
+      final result = await repository.fetchAbsencesWithMembers(
+        type: 'sickness',
+        date: DateTime(2023),
+      );
+
+      // Assert
+      expect(result.isRight(), true);
+      result.fold(
+        (failure) => fail('Expected right but got left'),
+        (paginatedAbsence) {
+          expect(paginatedAbsence.absences.length, 0);
+        },
+      );
+    });
   });
 }
