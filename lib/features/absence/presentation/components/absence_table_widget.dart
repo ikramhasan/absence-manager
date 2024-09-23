@@ -1,4 +1,5 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
+import 'package:absence_manager/features/absence/presentation/components/absence_filter_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_status_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/date_range_row_widget.dart';
@@ -16,7 +17,7 @@ class AbsenceTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<AbsenceCubit>().fetchAbsencesWithMembers();
-    
+
     return BlocBuilder<AbsenceCubit, AbsenceState>(
       builder: (context, state) {
         return state.map(
@@ -26,18 +27,13 @@ class AbsenceTableWidget extends StatelessWidget {
               children: [
                 const Row(
                   children: [
-                    Text(
-                      'Absences',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    AbsenceFilterWidget(),
                     Spacer(),
                     PaginationWidget(),
                     SizedBox(width: 16),
                   ],
                 ),
+                const SizedBox(height: 16),
                 Expanded(
                   child: InteractiveViewer(
                     constrained: false,
