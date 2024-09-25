@@ -44,5 +44,5 @@ app.*.map.json
 
 # Custom
 pubspec.lock
-coverage
+coverage/html
 test/features/calendar/infrastructure/downloads
