@@ -8,6 +8,7 @@ import 'package:absence_manager/features/absence/presentation/components/data_ta
 import 'package:absence_manager/features/absence/presentation/components/data_table/pagination_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/data_table/period_row_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/reload_widget.dart';
+import 'package:absence_manager/features/calendar/presentation/components/save_calendar_button.dart';
 import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,8 @@ class AbsenceTableWidget extends StatelessWidget {
                       const SizedBox.shrink(),
                     const Spacer(),
                     const PaginationWidget(),
+                    const SizedBox(width: 16),
+                    SaveCalendarButton(absences: state.absences),
                     const SizedBox(width: 16),
                   ],
                 ),

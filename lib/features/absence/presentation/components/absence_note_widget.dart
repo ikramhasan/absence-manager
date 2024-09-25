@@ -1,4 +1,5 @@
 import 'package:absence_manager/features/core/infrastructure/string_extensions.dart';
+import 'package:absence_manager/features/core/presentation/components/widget_size.dart';
 import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class AbsenceNoteWidget extends StatelessWidget {
   const AbsenceNoteWidget({
     required this.author,
     required this.note,
+    this.size = WidgetSize.large,
     super.key,
   });
 
@@ -21,6 +23,9 @@ class AbsenceNoteWidget extends StatelessWidget {
   /// The note.
   final String note;
 
+  /// The size of the widget. Defaults to [WidgetSize.large].
+  final WidgetSize size;
+
   @override
   Widget build(BuildContext context) {
     return note.isNullOrEmpty
@@ -30,7 +35,7 @@ class AbsenceNoteWidget extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 16),
+                  SizedBox(height: size == WidgetSize.small ? 8 : 16),
                   Text.rich(
                     TextSpan(
                       text: '${author == NoteAuthor.member

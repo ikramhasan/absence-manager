@@ -50,7 +50,7 @@ class AbsenceCard extends StatelessWidget {
                   Text(
                     absence.user!.name,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -77,10 +77,12 @@ class AbsenceCard extends StatelessWidget {
                   AbsenceNoteWidget(
                     author: NoteAuthor.member,
                     note: absence.memberNote,
+                    size: WidgetSize.small,
                   ),
                   AbsenceNoteWidget(
                     author: NoteAuthor.admitter,
                     note: absence.admitterNote,
+                    size: WidgetSize.small,
                   ),
                 ],
               ),
@@ -89,11 +91,15 @@ class AbsenceCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                AbsenceTypeWidget(type: absence.type.name),
+                AbsenceTypeWidget(
+                  type: absence.type.name,
+                  size: WidgetSize.small,
+                ),
                 const SizedBox(height: 8),
                 AbsenceStatusWidget(
                   confirmedAt: absence.confirmedAt,
                   rejectedAt: absence.rejectedAt,
+                  size: WidgetSize.small,
                 ),
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:absence_manager/features/absence/presentation/components/absence
 import 'package:absence_manager/features/absence/presentation/components/absence_table_widget.dart';
 import 'package:absence_manager/features/absence/presentation/components/absence_type_filter_widget.dart';
 import 'package:absence_manager/features/core/assets/resources.dart';
+import 'package:absence_manager/features/core/presentation/components/widget_size.dart';
 import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:absence_manager/features/settings/presentation/settings_page.dart';
@@ -57,15 +58,24 @@ class _HomePageState extends State<HomePage> {
           },
           appBar: AppBar(
             centerTitle: false,
-            title: Text(context.l10n.appName),
+            title: Text(
+              context.l10n.appName,
+              style: TextStyle(
+                fontSize: width <= 700 ? 20 : null,
+              ),
+            ),
             actions: [
               if (width <= 700)
-                const Row(
+                Row(
                   children: [
-                    AbsenceTypeFilterWidget(),
-                    SizedBox(width: 16),
-                    AbsenceDateFilterWidget(),
-                    SizedBox(width: 16),
+                    AbsenceTypeFilterWidget(
+                      size: width <= 700 ? WidgetSize.small : WidgetSize.large,
+                    ),
+                    const SizedBox(width: 8),
+                    AbsenceDateFilterWidget(
+                      size: width <= 700 ? WidgetSize.small : WidgetSize.large,
+                    ),
+                    const SizedBox(width: 16),
                   ],
                 )
               else

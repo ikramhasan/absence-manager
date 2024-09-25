@@ -1,3 +1,4 @@
+import 'package:absence_manager/features/core/presentation/components/widget_size.dart';
 import 'package:absence_manager/features/settings/application/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,13 +6,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// A widget that displays the status of an absence request.
 class AbsenceStatusWidget extends StatelessWidget {
   /// Creates an [AbsenceStatusWidget].
-  const AbsenceStatusWidget({super.key, this.confirmedAt, this.rejectedAt});
+  const AbsenceStatusWidget({
+    super.key,
+    this.confirmedAt,
+    this.rejectedAt,
+    this.size = WidgetSize.large,
+  });
 
   /// The date and time when the absence request was confirmed.
   final DateTime? confirmedAt;
 
   /// The date and time when the absence request was rejected.
   final DateTime? rejectedAt;
+
+  /// The size of the widget. Defaults to [WidgetSize.large].
+  final WidgetSize size;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +76,7 @@ class AbsenceStatusWidget extends StatelessWidget {
                       ? confirmedTextColor
                       : requestedTextColor,
               fontWeight: FontWeight.w400,
-              fontSize: 16,
+              fontSize: size == WidgetSize.small ? 14 : 16,
             ),
           ),
         );
