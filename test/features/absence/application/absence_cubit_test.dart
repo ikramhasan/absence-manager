@@ -192,5 +192,53 @@ void main() {
         ),
       ],
     );
+
+    blocTest<AbsenceCubit, AbsenceState>(
+      'filters absences using current type when type is null',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(
+            type: 'vacation',
+            date: anyNamed('date'),
+          ),
+        ).thenAnswer((_) async => right(createMockResponse(absencesCount: 5)));
+        return absenceCubit..filterAbsences(type: 'vacation');
+      },
+      act: (cubit) => cubit.filterAbsences(date: genericDate),
+      expect: () => [
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.filterType,
+            orElse: () => null,
+          ),
+          'filter type',
+          'vacation',
+        ),
+      ],
+    );
+
+    blocTest<AbsenceCubit, AbsenceState>(
+      'filters absences using current date when date is null',
+      build: () {
+        when(
+          mockAbsenceRepository.fetchAbsencesWithMembers(
+            type: anyNamed('type'),
+            date: genericDate,
+          ),
+        ).thenAnswer((_) async => right(createMockResponse(absencesCount: 5)));
+        return absenceCubit..filterAbsences(date: genericDate);
+      },
+      act: (cubit) => cubit.filterAbsences(type: 'sick'),
+      expect: () => [
+        isA<AbsenceState>().having(
+          (state) => state.maybeMap(
+            loaded: (loaded) => loaded.filterDate,
+            orElse: () => null,
+          ),
+          'filter date',
+          genericDate,
+        ),
+      ],
+    );
   });
 }

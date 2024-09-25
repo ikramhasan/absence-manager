@@ -109,6 +109,7 @@ void main() {
         absences: absences,
         currentPage: 1,
         totalPages: 1,
+        totalAbsences: 2,
         hasMore: false,
       ),
     );
@@ -198,6 +199,7 @@ void main() {
         absences: absences,
         currentPage: 1,
         totalPages: 2,
+        totalAbsences: 20,
         hasMore: true,
       ),
     );

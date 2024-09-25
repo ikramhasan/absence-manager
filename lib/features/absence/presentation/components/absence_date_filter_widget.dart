@@ -1,5 +1,6 @@
 import 'package:absence_manager/features/absence/application/absence_cubit.dart';
 import 'package:absence_manager/features/core/infrastructure/app_haptic_feedback.dart';
+import 'package:absence_manager/features/core/infrastructure/date_extensions.dart';
 import 'package:absence_manager/features/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,19 @@ class AbsenceDateFilterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedDate = context.watch<AbsenceCubit>().state.whenOrNull(
+          loaded: (
+            _,
+            __,
+            ___,
+            ____,
+            _____,
+            ______,
+            filterDate,
+          ) =>
+              filterDate,
+        );
+
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () async {
@@ -38,7 +52,10 @@ class AbsenceDateFilterWidget extends StatelessWidget {
           children: [
             const Icon(Icons.calendar_month_rounded),
             const SizedBox(width: 8),
-            Text(context.l10n.date),
+            if (selectedDate != null)
+              Text(selectedDate.toFormattedString())
+            else
+              Text(context.l10n.date),
           ],
         ),
       ),

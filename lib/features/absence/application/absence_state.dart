@@ -12,7 +12,10 @@ class AbsenceState with _$AbsenceState {
     required List<Absence> absences,
     required int currentPage,
     required int totalPages,
+    required int totalAbsences,
     required bool hasMore,
+    String? filterType,
+    DateTime? filterDate,
   }) = AbsenceLoaded;
 
   /// The error state of the AbsenceCubit.

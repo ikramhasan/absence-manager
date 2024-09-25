@@ -26,5 +26,17 @@
   "period": "Zeitraum",
   "type": "Typ",
   "status": "Status",
-  "selectALanguage": "Wählen Sie eine Sprache"
+  "selectALanguage": "Wählen Sie eine Sprache",
+  "nothingToShowHere": "Nichts zu zeigen",
+  "showingNAbsencesOfNTotal": "{length} Abwesenheiten von insgesamt {total} werden angezeigt",
+  "@showingNAbsencesOfNTotal": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

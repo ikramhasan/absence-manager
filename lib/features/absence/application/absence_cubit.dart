@@ -67,7 +67,10 @@ class AbsenceCubit extends Cubit<AbsenceState> {
             absences: _allAbsences,
             currentPage: _currentPage,
             totalPages: _totalPages,
+            totalAbsences: paginatedAbsences.totalAbsences,
             hasMore: _currentPage < _totalPages,
+            filterType: type ?? _currentType,
+            filterDate: date ?? _currentDate,
           ),
         );
       },
@@ -88,6 +91,10 @@ class AbsenceCubit extends Cubit<AbsenceState> {
 
   /// Filters absences by type and date.
   void filterAbsences({String? type, DateTime? date}) {
-    fetchAbsencesWithMembers(type: type, date: date, reset: true);
+    fetchAbsencesWithMembers(
+      type: type ?? _currentType,
+      date: date ?? _currentDate,
+      reset: true,
+    );
   }
 }

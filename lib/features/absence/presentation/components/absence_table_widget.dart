@@ -29,22 +29,39 @@ class AbsenceTableWidget extends StatelessWidget {
           loaded: (state) {
             return Column(
               children: [
-                const Row(
+                Row(
                   children: [
-                    AbsenceTypeFilterWidget(),
-                    SizedBox(width: 16),
-                    AbsenceDateFilterWidget(),
-                    Spacer(),
-                    ReloadWidget(),
-                    SizedBox(width: 16),
-                    PaginationWidget(),
-                    SizedBox(width: 16),
+                    const AbsenceTypeFilterWidget(),
+                    const SizedBox(width: 16),
+                    const AbsenceDateFilterWidget(),
+                    const SizedBox(width: 16),
+                    if (state.filterDate != null || state.filterType != null)
+                      const ReloadWidget()
+                    else
+                      const SizedBox.shrink(),
+                    const Spacer(),
+                    const PaginationWidget(),
+                    const SizedBox(width: 16),
                   ],
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  context.l10n.showingNAbsencesOfNTotal(
+                    state.absences.length,
+                    state.totalAbsences,
+                  ),
+                ),
                 const SizedBox(height: 16),
-                Expanded(
+                if (state.absences.isEmpty)
+                  Expanded(
+                    child: Center(child: Text(context.l10n.nothingToShowHere)),
+                  )
+                else
+                  Expanded(
                   child: InteractiveViewer(
                     constrained: false,
+                      maxScale: 1,
+                      minScale: 1,
                     child: DataTable(
                       headingRowColor: WidgetStateProperty.resolveWith(
                         (states) => Color(

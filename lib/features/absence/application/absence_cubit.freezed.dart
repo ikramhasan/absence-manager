@@ -19,8 +19,14 @@ mixin _$AbsenceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences, int currentPage,
-            int totalPages, bool hasMore)
+    required TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)
         loaded,
     required TResult Function(Failure failure) error,
   }) =>
@@ -28,8 +34,14 @@ mixin _$AbsenceState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult? Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult? Function(Failure failure)? error,
   }) =>
@@ -37,8 +49,14 @@ mixin _$AbsenceState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -131,8 +149,14 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences, int currentPage,
-            int totalPages, bool hasMore)
+    required TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)
         loaded,
     required TResult Function(Failure failure) error,
   }) {
@@ -143,8 +167,14 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult? Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult? Function(Failure failure)? error,
   }) {
@@ -155,8 +185,14 @@ class _$AbsenceLoadingImpl implements AbsenceLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -213,7 +249,13 @@ abstract class _$$AbsenceLoadedImplCopyWith<$Res> {
       __$$AbsenceLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<Absence> absences, int currentPage, int totalPages, bool hasMore});
+      {List<Absence> absences,
+      int currentPage,
+      int totalPages,
+      int totalAbsences,
+      bool hasMore,
+      String? filterType,
+      DateTime? filterDate});
 }
 
 /// @nodoc
@@ -232,7 +274,10 @@ class __$$AbsenceLoadedImplCopyWithImpl<$Res>
     Object? absences = null,
     Object? currentPage = null,
     Object? totalPages = null,
+    Object? totalAbsences = null,
     Object? hasMore = null,
+    Object? filterType = freezed,
+    Object? filterDate = freezed,
   }) {
     return _then(_$AbsenceLoadedImpl(
       absences: null == absences
@@ -247,10 +292,22 @@ class __$$AbsenceLoadedImplCopyWithImpl<$Res>
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
               as int,
+      totalAbsences: null == totalAbsences
+          ? _value.totalAbsences
+          : totalAbsences // ignore: cast_nullable_to_non_nullable
+              as int,
       hasMore: null == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool,
+      filterType: freezed == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filterDate: freezed == filterDate
+          ? _value.filterDate
+          : filterDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -262,7 +319,10 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
       {required final List<Absence> absences,
       required this.currentPage,
       required this.totalPages,
-      required this.hasMore})
+      required this.totalAbsences,
+      required this.hasMore,
+      this.filterType,
+      this.filterDate})
       : _absences = absences;
 
   final List<Absence> _absences;
@@ -278,11 +338,17 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
   @override
   final int totalPages;
   @override
+  final int totalAbsences;
+  @override
   final bool hasMore;
+  @override
+  final String? filterType;
+  @override
+  final DateTime? filterDate;
 
   @override
   String toString() {
-    return 'AbsenceState.loaded(absences: $absences, currentPage: $currentPage, totalPages: $totalPages, hasMore: $hasMore)';
+    return 'AbsenceState.loaded(absences: $absences, currentPage: $currentPage, totalPages: $totalPages, totalAbsences: $totalAbsences, hasMore: $hasMore, filterType: $filterType, filterDate: $filterDate)';
   }
 
   @override
@@ -295,7 +361,13 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
                 other.currentPage == currentPage) &&
             (identical(other.totalPages, totalPages) ||
                 other.totalPages == totalPages) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+            (identical(other.totalAbsences, totalAbsences) ||
+                other.totalAbsences == totalAbsences) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.filterType, filterType) ||
+                other.filterType == filterType) &&
+            (identical(other.filterDate, filterDate) ||
+                other.filterDate == filterDate));
   }
 
   @override
@@ -304,7 +376,10 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
       const DeepCollectionEquality().hash(_absences),
       currentPage,
       totalPages,
-      hasMore);
+      totalAbsences,
+      hasMore,
+      filterType,
+      filterDate);
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
@@ -318,38 +393,59 @@ class _$AbsenceLoadedImpl implements AbsenceLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences, int currentPage,
-            int totalPages, bool hasMore)
+    required TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)
         loaded,
     required TResult Function(Failure failure) error,
   }) {
-    return loaded(absences, currentPage, totalPages, hasMore);
+    return loaded(absences, currentPage, totalPages, totalAbsences, hasMore,
+        filterType, filterDate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult? Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult? Function(Failure failure)? error,
   }) {
-    return loaded?.call(absences, currentPage, totalPages, hasMore);
+    return loaded?.call(absences, currentPage, totalPages, totalAbsences,
+        hasMore, filterType, filterDate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(absences, currentPage, totalPages, hasMore);
+      return loaded(absences, currentPage, totalPages, totalAbsences, hasMore,
+          filterType, filterDate);
     }
     return orElse();
   }
@@ -394,12 +490,18 @@ abstract class AbsenceLoaded implements AbsenceState {
       {required final List<Absence> absences,
       required final int currentPage,
       required final int totalPages,
-      required final bool hasMore}) = _$AbsenceLoadedImpl;
+      required final int totalAbsences,
+      required final bool hasMore,
+      final String? filterType,
+      final DateTime? filterDate}) = _$AbsenceLoadedImpl;
 
   List<Absence> get absences;
   int get currentPage;
   int get totalPages;
+  int get totalAbsences;
   bool get hasMore;
+  String? get filterType;
+  DateTime? get filterDate;
 
   /// Create a copy of AbsenceState
   /// with the given fields replaced by the non-null parameter values.
@@ -489,8 +591,14 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Absence> absences, int currentPage,
-            int totalPages, bool hasMore)
+    required TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)
         loaded,
     required TResult Function(Failure failure) error,
   }) {
@@ -501,8 +609,14 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult? Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult? Function(Failure failure)? error,
   }) {
@@ -513,8 +627,14 @@ class _$AbsenceErrorImpl implements AbsenceError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Absence> absences, int currentPage, int totalPages,
-            bool hasMore)?
+    TResult Function(
+            List<Absence> absences,
+            int currentPage,
+            int totalPages,
+            int totalAbsences,
+            bool hasMore,
+            String? filterType,
+            DateTime? filterDate)?
         loaded,
     TResult Function(Failure failure)? error,
     required TResult orElse(),

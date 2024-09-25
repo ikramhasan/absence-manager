@@ -18,6 +18,7 @@ class L10n {
     AppLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
   ];
 }
 

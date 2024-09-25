@@ -26,5 +26,17 @@
   "period": "Period",
   "type": "Type",
   "status": "Status",
-  "selectALanguage": "Select a language"
+  "selectALanguage": "Select a language",
+  "nothingToShowHere": "Nothing to show here",
+  "showingNAbsencesOfNTotal": "Showing {length} absences of {total} total",
+  "@showingNAbsencesOfNTotal": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }
