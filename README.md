@@ -8,7 +8,7 @@ This is the submission for the Crewmeister coding challenge - Frontend (Flutter)
 
 Submitted by [Ikramul Hasan](https://github.com/ikramhasan)
 
-## How to run the project
+## How to run the project 🚀
 
 The easiest way to test the project is by navigating to the deployed site.
 
@@ -46,8 +46,21 @@ flutter run
 
 </details>
 
+## Demo Video 🎥
 
-## Product Requirements
+Here's a quick overview of the project:
+
+<div>
+    <a href="https://www.loom.com/share/985a79c0bcd444f982628e1eb8c4a6d6">
+      <p>Front End Coding Challenge Submission Overview - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/985a79c0bcd444f982628e1eb8c4a6d6">
+      <img style="max-width:600px;" src="https://cdn.loom.com/sessions/thumbnails/985a79c0bcd444f982628e1eb8c4a6d6-8c6a26afcf8c9b36-full-play.gif">
+    </a>
+</div>
+
+
+## Product Requirements 📝
 
 - [x] I want to see a list of absences including the names of the employees.
 - [x] I want to see the first 10 absences, with the ability to paginate.
@@ -66,7 +79,7 @@ flutter run
 - [x] I want to see an empty state if there are no results.
 - [x] (Bonus) I can generate an iCal file and import it into outlook.
 
-## Additional Features
+## Additional Features ✨
 
 - [x] Dark Mode, and Light Mode support
 - [x] Mobile and desktop responsive design
@@ -74,10 +87,10 @@ flutter run
 - [x] Localization support (English and German)
 - [x] Haptic feedback 
 
-## Technical Stuff
+## Technical Stuff 💻
 
 
-### Code Coverage
+### Code Coverage ✅
 
 Almost all the lines of this project has been tested with unit and widget tests. The project has 98% test coverage. Here's the test coverage report:
 
@@ -100,7 +113,7 @@ and navigating to the generated `/coverage` directory.
 
 </details>
 
-### Pagination
+### Pagination 📄
 
 There are two types of pagination implemented in the project:
 
@@ -108,20 +121,20 @@ There are two types of pagination implemented in the project:
   
 2. **Manual Pagination**: The user can manually change the page number from the settings page. This pagination will show up in desktop devices.
 
-### Linting
+### Linting 🧹
 
 The codebase goes through a very strict linting process. You can find all the custom linting rules in the [analysis_options.yaml](analysis_options.yaml) file.
 
 
-### Documentation
+### Documentation 📚
 
 All the public functions, classes, variables, and enums are documented with Dartdoc. 
 
-### CI/CD
+### CI/CD 🔁
 
 The project is set up with Github Actions for CI/CD. The workflow is defined in the [.github/workflows/gh-pages.yaml](.github/workflows/gh-pages.yaml) file.
 
-## Tech Stack
+## Tech Stack 🛠
 
 - Framework: [Flutter](https://flutter.dev/)
 - State Management: [Flutter Bloc](https://bloclibrary.dev/)
