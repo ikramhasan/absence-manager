@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:absence_manager/features/absence/domain/absence.dart';
 import 'package:absence_manager/features/absence/domain/i_absence_repository.dart';
 import 'package:absence_manager/features/calendar/domain/i_calendar_repository.dart';
 import 'package:absence_manager/features/core/domain/exceptions.dart';
 import 'package:absence_manager/features/core/domain/failure.dart';
+import 'package:absence_manager/features/core/infrastructure/string_extensions.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:icalendar/icalendar.dart';
 import 'package:universal_html/html.dart' as html;
@@ -51,7 +53,9 @@ class ICalCalendarRepository implements ICalendarRepository {
 
         calendar.addComponent(
           EventComponent(
-            summary: SummaryProperty('${absence.type.name} - ${user.name}'),
+            summary: SummaryProperty(
+              '${absence.type.name.capitalize()} - ${user.name}',
+            ),
             description: DescriptionProperty(absence.admitterNote),
             dateTimeStart: DateTimeStartProperty(absence.startDate),
             end: DateTimeEndProperty(absence.endDate),
@@ -120,8 +124,8 @@ class ICalCalendarRepository implements ICalendarRepository {
     Absence absence,
     String calendarString,
   ) async {
-    final bytes = calendarString.codeUnits;
-    final blob = html.Blob([bytes]);
+    final bytes = utf8.encode(calendarString); // Ensure proper UTF-8 encoding
+    final blob = html.Blob([bytes], 'text/calendar'); // Specify MIME type
     final url = html.Url.createObjectUrlFromBlob(blob);
     final anchor = html.document.createElement('a') as html.AnchorElement
       ..href = url
