@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://crewmeister.com/images/logo_crewmeister_without_text.svg" />
-</p>
-
 # 🚀 Flutter test driven development example
 
 The purpose of this technical project is to showcase my test driven development capabilities
