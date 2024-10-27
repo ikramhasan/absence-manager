@@ -2,11 +2,11 @@
   <img src="https://crewmeister.com/images/logo_crewmeister_without_text.svg" />
 </p>
 
-# 🚀 Crewmeister coding challenge - Frontend (Flutter)
+# 🚀 Flutter test driven development example
 
-This is the submission for the Crewmeister coding challenge - Frontend (Flutter)
+The purpose of this technical project is to showcase my test driven development capabilities
 
-Submitted by [Ikramul Hasan](https://github.com/ikramhasan)
+Project by [Ikramul Hasan](https://github.com/ikramhasan)
 
 ## How to run the project 🚀
 
@@ -46,19 +46,6 @@ flutter run
 
 </details>
 
-## Demo Video 🎥
-
-Here's a quick overview of the project:
-
-<div>
-    <a href="https://www.loom.com/share/985a79c0bcd444f982628e1eb8c4a6d6">
-      <p>Front End Coding Challenge Submission Overview - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/985a79c0bcd444f982628e1eb8c4a6d6">
-      <img style="max-width:600px;" src="https://cdn.loom.com/sessions/thumbnails/985a79c0bcd444f982628e1eb8c4a6d6-8c6a26afcf8c9b36-full-play.gif">
-    </a>
-</div>
-
 
 ## Product Requirements 📝
 
@@ -77,10 +64,7 @@ Here's a quick overview of the project:
 - [x] I want to see a loading state until the list is available.
 - [x] I want to see an error state if the list is unavailable.
 - [x] I want to see an empty state if there are no results.
-- [x] (Bonus) I can generate an iCal file and import it into outlook.
-
-## Additional Features ✨
-
+- [x] I can generate an iCal file and import it into outlook.
 - [x] Dark Mode, and Light Mode support
 - [x] Mobile and desktop responsive design
 - [x] Settings page
