@@ -6,11 +6,6 @@ Project by [Ikramul Hasan](https://github.com/ikramhasan)
 
 ## How to run the project 🚀
 
-The easiest way to test the project is by navigating to the deployed site.
-
-### [LIVE DEMO: https://ikramhasan.github.io/absence-manager](https://ikramhasan.github.io/absence-manager)
-
-
 To run it manually in you local machine, follow the steps below:
 
 <details>
